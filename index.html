@@ -36,9 +36,21 @@
         }
         .game-title { font-size: 1.3em; font-weight: bold; display: block; }
         .game-info { font-size: 0.9em; opacity: 0.8; margin-top: 8px; display: block; }
+
+        /* BOTÓN DE VOLVER FLOTANTE */
+        #btn-volver {
+            position: fixed; top: 10px; left: 10px;
+            background: rgba(242, 169, 0, 0.9);
+            color: #002d62; border: none; padding: 10px 20px;
+            border-radius: 20px; font-weight: bold; font-size: 14px;
+            z-index: 10000; cursor: pointer; display: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
     </style>
 </head>
 <body>
+
+<button id="btn-volver" onclick="regresar()">⬅ VOLVER A LA LISTA</button>
 
 <div id="app">
     <header>
@@ -52,42 +64,6 @@
         <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723183/')">
             <span class="game-title">Cubs @ Angels</span><span class="game-info">🕒 19:40 VZA</span>
         </button>
-        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723184/')">
-            <span class="game-title">Brewers @ Rays</span><span class="game-info">🕒 19:40 VZA</span>
-        </button>
-        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723185/')">
-            <span class="game-title">Twins @ Orioles</span><span class="game-info">🕒 19:45 VZA</span>
-        </button>
-        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723189/')">
-            <span class="game-title">Cardinals @ Mets</span><span class="game-info">🕒 19:45 VZA</span>
-        </button>
-        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723188/')">
-            <span class="game-title">Astros @ Red Sox</span><span class="game-info">🕒 20:10 VZA</span>
-        </button>
-        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723192/')">
-            <span class="game-title">Mariners @ Yankees</span><span class="game-info">🕒 21:40 VZA</span>
-        </button>
-        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723193/')">
-            <span class="game-title">Padres @ Giants</span><span class="game-info">🕒 21:40 VZA</span>
-        </button>
-        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723197/')">
-            <span class="game-title">D-Backs @ Tigers</span><span class="game-info">🕒 22:10 VZA</span>
-        </button>
-        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723191/')">
-            <span class="game-title">Dodgers @ Guardians</span><span class="game-info">🕒 22:10 VZA</span>
-        </button>
-        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723194/')">
-            <span class="game-title">Rangers @ Phillies</span><span class="game-info">Extra 1</span>
-        </button>
-        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723190/')">
-            <span class="game-title">Royals @ Brewers</span><span class="game-info">Extra 2</span>
-        </button>
-        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723196/')">
-            <span class="game-title">Marlins @ Nationals</span><span class="game-info">Extra 3</span>
-        </button>
-        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723195/')">
-            <span class="game-title">Rockies @ White Sox</span><span class="game-info">Extra 4</span>
-        </button>
         <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723200/')">
             <span class="game-title">Blue Jays @ Pirates</span><span class="game-info">Extra 5</span>
         </button>
@@ -96,8 +72,17 @@
 
 <script>
     function ver(url) {
-        // Este es el truco maestro: abre el video sobre tu app
+        // Guardamos el estado en el historial para que el botón atrás funcione
         window.location.href = url;
+    }
+
+    function regresar() {
+        window.location.href = "https://mchessbooks2025.github.io/mlb-app/";
+    }
+
+    // Si la URL no es la principal, mostramos el botón de volver
+    if (window.location.href !== "https://mchessbooks2025.github.io/mlb-app/") {
+        document.getElementById('btn-volver').style.display = 'block';
     }
 </script>
 </body>
