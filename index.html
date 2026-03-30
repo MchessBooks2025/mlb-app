@@ -10,9 +10,9 @@
             --bg: #050a0f; --card: #101820; --text: #ffffff;
         }
         body, html { 
-            margin: 0; padding: 0; min-height: 100%; 
+            margin: 0; padding: 0; height: 100%; 
             background: var(--bg); color: var(--text);
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', sans-serif; overflow-x: hidden;
         }
         #app { padding: 20px; max-width: 1200px; margin: 0 auto; text-align: center; }
         header { 
@@ -37,20 +37,27 @@
         .game-title { font-size: 1.3em; font-weight: bold; display: block; }
         .game-info { font-size: 0.9em; opacity: 0.8; margin-top: 8px; display: block; }
 
-        /* BOTÓN DE VOLVER FLOTANTE */
-        #btn-volver {
-            position: fixed; top: 10px; left: 10px;
-            background: rgba(242, 169, 0, 0.9);
-            color: #002d62; border: none; padding: 10px 20px;
-            border-radius: 20px; font-weight: bold; font-size: 14px;
-            z-index: 10000; cursor: pointer; display: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        /* REPRODUCTOR PANTALLA COMPLETA */
+        #player-layer {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 9999; display: none;
         }
+        #btn-cerrar {
+            position: absolute; top: 20px; left: 20px;
+            background: var(--mlb-gold); color: var(--mlb-blue);
+            border: none; padding: 15px 30px; border-radius: 50px;
+            font-weight: bold; font-size: 1.1em; cursor: pointer;
+            z-index: 10001; box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+        }
+        iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
 
-<button id="btn-volver" onclick="regresar()">⬅ VOLVER A LA LISTA</button>
+<div id="player-layer">
+    <button id="btn-cerrar" onclick="cerrarVideo()">⬅ VOLVER A LA LISTA</button>
+    <iframe id="video-frame" src="" allowfullscreen></iframe>
+</div>
 
 <div id="app">
     <header>
@@ -58,31 +65,67 @@
     </header>
 
     <div class="grid">
-        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723186/')">
+        <button class="btn-game" onclick="abrirVideo('https://es8.sportplus.live/baseball/166775/7723186/')">
             <span class="game-title">Braves @ Athletics</span><span class="game-info">🕒 19:15 VZA</span>
         </button>
-        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723183/')">
+        <button class="btn-game" onclick="abrirVideo('https://es8.sportplus.live/baseball/166775/7723183/')">
             <span class="game-title">Cubs @ Angels</span><span class="game-info">🕒 19:40 VZA</span>
         </button>
-        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723200/')">
+        <button class="btn-game" onclick="abrirVideo('https://es8.sportplus.live/baseball/166775/7723184/')">
+            <span class="game-title">Brewers @ Rays</span><span class="game-info">🕒 19:40 VZA</span>
+        </button>
+        <button class="btn-game" onclick="abrirVideo('https://es8.sportplus.live/baseball/166775/7723185/')">
+            <span class="game-title">Twins @ Orioles</span><span class="game-info">🕒 19:45 VZA</span>
+        </button>
+        <button class="btn-game" onclick="abrirVideo('https://es8.sportplus.live/baseball/166775/7723189/')">
+            <span class="game-title">Cardinals @ Mets</span><span class="game-info">🕒 19:45 VZA</span>
+        </button>
+        <button class="btn-game" onclick="abrirVideo('https://es8.sportplus.live/baseball/166775/7723188/')">
+            <span class="game-title">Astros @ Red Sox</span><span class="game-info">🕒 20:10 VZA</span>
+        </button>
+        <button class="btn-game" onclick="abrirVideo('https://es8.sportplus.live/baseball/166775/7723192/')">
+            <span class="game-title">Mariners @ Yankees</span><span class="game-info">🕒 21:40 VZA</span>
+        </button>
+        <button class="btn-game" onclick="abrirVideo('https://es8.sportplus.live/baseball/166775/7723193/')">
+            <span class="game-title">Padres @ Giants</span><span class="game-info">🕒 21:40 VZA</span>
+        </button>
+        <button class="btn-game" onclick="abrirVideo('https://es8.sportplus.live/baseball/166775/7723197/')">
+            <span class="game-title">D-Backs @ Tigers</span><span class="game-info">🕒 22:10 VZA</span>
+        </button>
+        <button class="btn-game" onclick="abrirVideo('https://es8.sportplus.live/baseball/166775/7723191/')">
+            <span class="game-title">Dodgers @ Guardians</span><span class="game-info">🕒 22:10 VZA</span>
+        </button>
+        <button class="btn-game" onclick="abrirVideo('https://es8.sportplus.live/baseball/166775/7723194/')">
+            <span class="game-title">Rangers @ Phillies</span><span class="game-info">Extra 1</span>
+        </button>
+        <button class="btn-game" onclick="abrirVideo('https://es8.sportplus.live/baseball/166775/7723190/')">
+            <span class="game-title">Royals @ Brewers</span><span class="game-info">Extra 2</span>
+        </button>
+        <button class="btn-game" onclick="abrirVideo('https://es8.sportplus.live/baseball/166775/7723196/')">
+            <span class="game-title">Marlins @ Nationals</span><span class="game-info">Extra 3</span>
+        </button>
+        <button class="btn-game" onclick="abrirVideo('https://es8.sportplus.live/baseball/166775/7723195/')">
+            <span class="game-title">Rockies @ White Sox</span><span class="game-info">Extra 4</span>
+        </button>
+        <button class="btn-game" onclick="abrirVideo('https://es8.sportplus.live/baseball/166775/7723200/')">
             <span class="game-title">Blue Jays @ Pirates</span><span class="game-info">Extra 5</span>
         </button>
     </div>
 </div>
 
 <script>
-    function ver(url) {
-        // Guardamos el estado en el historial para que el botón atrás funcione
-        window.location.href = url;
+    function abrirVideo(url) {
+        document.getElementById('video-frame').src = url;
+        document.getElementById('player-layer').style.display = 'block';
+        // Desactivar scroll del fondo
+        document.body.style.overflow = 'hidden';
     }
 
-    function regresar() {
-        window.location.href = "https://mchessbooks2025.github.io/mlb-app/";
-    }
-
-    // Si la URL no es la principal, mostramos el botón de volver
-    if (window.location.href !== "https://mchessbooks2025.github.io/mlb-app/") {
-        document.getElementById('btn-volver').style.display = 'block';
+    function cerrarVideo() {
+        document.getElementById('player-layer').style.display = 'none';
+        document.getElementById('video-frame').src = '';
+        // Reactivar scroll
+        document.body.style.overflow = 'auto';
     }
 </script>
 </body>
