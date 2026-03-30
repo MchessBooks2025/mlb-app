@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLB LIVE APP</title>
+    <style>
+        :root {
+            --mlb-blue: #002d62; --mlb-gold: #f2a900;
+            --bg: #050a0f; --card: #101820; --text: #ffffff;
+        }
+        body, html { 
+            margin: 0; padding: 0; height: 100%; 
+            background: var(--bg); color: var(--text);
+            font-family: 'Segoe UI', sans-serif; overflow: hidden;
+        }
+
+        /* DISEÑO DE APP */
+        #main-app { display: flex; flex-direction: column; height: 100vh; padding: 20px; box-sizing: border-box; }
+        
+        header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            border-bottom: 3px solid var(--mlb-blue); padding-bottom: 15px; margin-bottom: 20px;
+        }
+        .logo { font-size: 2.2em; font-weight: 900; color: var(--mlb-gold); text-shadow: 2px 2px #000; }
+        #reloj-vza { font-family: monospace; font-size: 1.4em; color: var(--mlb-gold); }
+
+        /* TABS DE DEPORTES */
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tab-btn { 
+            padding: 12px 25px; border-radius: 30px; border: none; 
+            background: var(--card); color: white; cursor: pointer; font-weight: bold;
+        }
+        .tab-btn.active { background: var(--mlb-gold); color: var(--mlb-blue); }
+
+        /* GRILLA DE JUEGOS */
+        .grid { 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+            gap: 15px; overflow-y: auto; padding-bottom: 40px;
+        }
+        .btn-game {
+            background: var(--card); border: 3px solid var(--mlb-blue);
+            border-radius: 12px; padding: 20px; color: white;
+            text-align: left; cursor: pointer; transition: 0.2s; outline: none;
+        }
+        .btn-game:focus, .btn-game:hover { 
+            background: var(--mlb-gold); color: var(--mlb-blue); 
+            transform: scale(1.03); border-color: white;
+        }
+        .game-title { font-size: 1.2em; font-weight: bold; display: block; }
+        .game-info { font-size: 0.8em; opacity: 0.8; margin-top: 8px; display: block; }
+
+        /* REPRODUCTOR FULLSCREEN */
+        #player-screen { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: #000; display: none; z-index: 9999; 
+        }
+        iframe { width: 100%; height: 100%; border: none; }
+        .btn-back { 
+            position: absolute; top: 20px; left: 20px; z-index: 10000;
+            background: rgba(0,0,0,0.8); color: white; padding: 12px 25px;
+            border-radius: 50px; border: 2px solid var(--mlb-gold); font-weight: bold;
+            cursor: pointer; text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="main-app">
+    <header>
+        <div class="logo">⚾ MLB PREMIUM</div>
+        <div id="reloj-vza">00:00:00</div>
+    </header>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showSection('mlb')">MLB</button>
+        <button class="tab-btn" onclick="showSection('otros')">OTROS DEPORTES</button>
+    </div>
+
+    <div id="sec-mlb" class="grid">
+        <button class="btn-game" onclick="play('https://es8.sportplus.live/baseball/166775/7723186/', 'Braves vs Athletics')">
+            <span class="game-title">Braves @ Athletics</span><span class="game-info">⏰ 19:15 VZA</span>
+        </button>
+        <button class="btn-game" onclick="play('https://es8.sportplus.live/baseball/166775/7723183/', 'Cubs vs Angels')">
+            <span class="game-title">Cubs @ Angels</span><span class="game-info">⏰ 19:40 VZA</span>
+        </button>
+        <button class="btn-game" onclick="play('https://es8.sportplus.live/baseball/166775/7723184/', 'Brewers vs Rays')">
+            <span class="game-title">Brewers @ Rays</span><span class="game-info">⏰ 19:40 VZA</span>
+        </button>
+        <button class="btn-game" onclick="play('https://es8.sportplus.live/baseball/166775/7723185/', 'Twins vs Orioles')">
+            <span class="game-title">Twins @ Orioles</span><span class="game-info">⏰ 19:45 VZA</span>
+        </button>
+        <button class="btn-game" onclick="play('https://es8.sportplus.live/baseball/166775/7723189/', 'Cardinals vs Mets')">
+            <span class="game-title">Cardinals @ Mets</span><span class="game-info">⏰ 19:45 VZA</span>
+        </button>
+        <button class="btn-game" onclick="play('https://es8.sportplus.live/baseball/166775/7723188/', 'Astros vs Red Sox')">
+            <span class="game-title">Astros @ Red Sox</span><span class="game-info">⏰ 20:10 VZA</span>
+        </button>
+        <button class="btn-game" onclick="play('https://es8.sportplus.live/baseball/166775/7723192/', 'Mariners vs Yankees')">
+            <span class="game-title">Mariners @ Yankees</span><span class="game-info">⏰ 21:40 VZA</span>
+        </button>
+        <button class="btn-game" onclick="play('https://es8.sportplus.live/baseball/166775/7723193/', 'Padres vs Giants')">
+            <span class="game-title">Padres @ Giants</span><span class="game-info">⏰ 21:40 VZA</span>
+        </button>
+        <button class="btn-game" onclick="play('https://es8.sportplus.live/baseball/166775/7723197/', 'D-Backs vs Tigers')">
+            <span class="game-title">D-Backs @ Tigers</span><span class="game-info">⏰ 22:10 VZA</span>
+        </button>
+        <button class="btn-game" onclick="play('https://es8.sportplus.live/baseball/166775/7723191/', 'Dodgers vs Guardians')">
+            <span class="game-title">Dodgers @ Guardians</span><span class="game-info">⏰ 22:10 VZA</span>
+        </button>
+        <button class="btn-game" onclick="play('https://es8.sportplus.live/baseball/166775/7723194/', 'Rangers vs Phillies')">
+            <span class="game-title">Rangers @ Phillies</span><span class="game-info">Extra Link 1</span>
+        </button>
+        <button class="btn-game" onclick="play('https://es8.sportplus.live/baseball/166775/7723190/', 'Royals vs Brewers')">
+            <span class="game-title">Royals @ Brewers</span><span class="game-info">Extra Link 2</span>
+        </button>
+        <button class="btn-game" onclick="play('https://es8.sportplus.live/baseball/166775/7723196/', 'Marlins vs Nationals')">
+            <span class="game-title">Marlins @ Nationals</span><span class="game-info">Extra Link 3</span>
+        </button>
+        <button class="btn-game" onclick="play('https://es8.sportplus.live/baseball/166775/7723195/', 'Rockies vs White Sox')">
+            <span class="game-title">Rockies @ White Sox</span><span class="game-info">Extra Link 4</span>
+        </button>
+        <button class="btn-game" onclick="play('https://es8.sportplus.live/baseball/166775/7723200/', 'Blue Jays vs Pirates')">
+            <span class="game-title">Blue Jays @ Pirates</span><span class="game-info">Extra Link 5</span>
+        </button>
+    </div>
+
+    <div id="sec-otros" class="grid" style="display:none;">
+        <p style="padding:20px; color:#888;">No hay eventos disponibles en otros deportes por ahora.</p>
+    </div>
+</div>
+
+<div id="player-screen">
+    <button class="btn-back" onclick="stopVideo()">⬅ VOLVER</button>
+    <div id="video-container" style="width:100%; height:100%;"></div>
+</div>
+
+<script>
+    // Reloj Caracas
+    function updateClock() {
+        const now = new Date();
+        const options = { timeZone: 'America/Caracas', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+        document.getElementById('reloj-vza').innerText = now.toLocaleTimeString('es-VE', options);
+    }
+    setInterval(updateClock, 1000); updateClock();
+
+    // Navegación de secciones
+    function showSection(id) {
+        document.getElementById('sec-mlb').style.display = id === 'mlb' ? 'grid' : 'none';
+        document.getElementById('sec-otros').style.display = id === 'otros' ? 'grid' : 'none';
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+
+    // Sistema de Reproducción
+    let currentURL = "";
+    function play(url, name) {
+        currentURL = url;
+        const screen = document.getElementById('player-screen');
+        const container = document.getElementById('video-container');
+        
+        // El truco para Smart TV: Forzar carga limpia
+        container.innerHTML = `<iframe src="${url}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+        screen.style.display = 'block';
+        
+        // Permite que el botón "Atrás" del control remoto funcione
+        history.pushState({view: 'player'}, name);
+    }
+
+    function stopVideo() {
+        document.getElementById('player-screen').style.display = 'none';
+        document.getElementById('video-container').innerHTML = '';
+    }
+
+    window.onpopstate = function() { stopVideo(); };
+</script>
+</body>
+</html>
