@@ -5,39 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB PREMIUM - Fase Beta</title>
     <style>
-        :root {
-            --mlb-blue: #002d62; --mlb-gold: #f2a900;
-            --bg: #050a0f; --card: #101820; --text: #ffffff;
-        }
-        body, html { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: sans-serif; }
+        :root { --mlb-blue: #002d62; --mlb-gold: #f2a900; --bg: #050a0f; --card: #101820; --text: #ffffff; }
+        body, html { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; }
         #app { padding: 20px; max-width: 1200px; margin: 0 auto; text-align: center; }
         header { border-bottom: 2px solid var(--mlb-blue); padding-bottom: 20px; margin-bottom: 25px; }
         .logo { font-size: 2.2em; font-weight: 900; color: var(--mlb-gold); }
-        .beta-tag { background: red; color: white; font-size: 0.4em; padding: 2px 8px; border-radius: 4px; vertical-align: middle; }
+        .beta-tag { background: red; color: white; font-size: 0.4em; padding: 2px 8px; border-radius: 4px; vertical-align: middle; margin-left: 10px; }
 
-        /* CAJA DE DESCARGA */
-        .download-box {
-            border: 2px dashed #28a745; padding: 20px; border-radius: 15px; 
-            background: rgba(40,167,69,0.1); margin-bottom: 30px;
-        }
-        .btn-download {
-            background: #28a745; color: white; text-decoration: none;
-            padding: 15px 30px; border-radius: 50px; font-weight: bold;
-            display: inline-block; font-size: 1.1em;
-        }
+        .download-box { border: 2px dashed #28a745; padding: 20px; border-radius: 15px; background: rgba(40,167,69,0.1); margin-bottom: 30px; }
+        .btn-download { background: #28a745; color: white; text-decoration: none; padding: 15px 35px; border-radius: 50px; font-weight: bold; display: inline-block; box-shadow: 0 4px 15px rgba(40,167,69,0.3); transition: 0.2s; }
+        .btn-download:active { transform: scale(0.95); }
 
-        /* DISEÑO DE BOTONES (SEGÚN TU IMAGEN) */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
-        .btn-game {
-            background: var(--card); border: 2px solid var(--mlb-blue);
-            border-radius: 12px; padding: 25px; color: white;
-            text-align: left; cursor: pointer; width: 100%; transition: 0.2s;
-        }
-        .btn-game:hover { background: var(--mlb-gold); color: var(--mlb-blue); }
+        .btn-game { background: var(--card); border: 2px solid var(--mlb-blue); border-radius: 12px; padding: 25px; color: white; text-align: left; cursor: pointer; width: 100%; transition: 0.2s; outline: none; }
+        .btn-game:hover, .btn-game:focus { background: var(--mlb-gold); color: var(--mlb-blue); border-color: white; transform: scale(1.02); }
         .game-title { font-size: 1.3em; font-weight: bold; display: block; }
         .game-info { font-size: 0.9em; opacity: 0.8; margin-top: 8px; display: block; }
 
-        .tip { background: #1a1a1a; padding: 15px; border-radius: 8px; margin-top: 30px; font-size: 0.9em; }
+        .footer-tip { background: #1a1a1a; padding: 20px; border-radius: 10px; margin-top: 40px; border-left: 5px solid var(--mlb-gold); font-size: 0.9em; text-align: left; }
     </style>
 </head>
 <body>
@@ -45,10 +30,11 @@
 <div id="app">
     <header>
         <div class="logo">⚾ MLB PREMIUM <span class="beta-tag">BETA</span></div>
+        <p style="color: #888; margin-top: 10px;">Periodo de Prueba y Análisis de Usuarios</p>
     </header>
 
     <div class="download-box">
-        <p style="margin-bottom: 15px; font-weight: bold;">📥 PRUEBA LA APP EN TU SMART TV</p>
+        <p style="margin-bottom: 15px; font-weight: bold;">📥 ¿Usas Android TV o TV Box? Descarga la App:</p>
         <a href="https://github.com/MchessBooks2025/mlb-app/raw/main/app-release.apk" class="btn-download">
            DESCARGAR app-release.apk
         </a>
@@ -73,10 +59,20 @@
         <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723188/', '_blank')">
             <span class="game-title">Astros @ Red Sox</span><span class="game-info">🕒 20:10 VZA</span>
         </button>
+        <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723192/', '_blank')">
+            <span class="game-title">Mariners @ Yankees</span><span class="game-info">🕒 21:40 VZA</span>
+        </button>
+        <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723193/', '_blank')">
+            <span class="game-title">Padres @ Giants</span><span class="game-info">🕒 21:40 VZA</span>
+        </button>
+        <button class="btn-game" onclick="button.open('https://es8.sportplus.live/baseball/166775/7723191/', '_blank')">
+            <span class="game-title">Dodgers @ Guardians</span><span class="game-info">🕒 22:10 VZA</span>
+        </button>
     </div>
 
-    <div class="tip">
-        💡 <b>TIP BETA:</b> Al tocar un juego, se abrirá una ventana nueva con el video. Al terminar, simplemente cierra esa ventana para volver a esta lista.
+    <div class="footer-tip">
+        <b>📢 NOTA PARA EL USUARIO:</b><br>
+        Esta es una versión de prueba. Al tocar un juego, se abrirá una ventana nueva con el reproductor. Para cambiar de juego o volver a la lista, simplemente cierra la ventana actual o usa el botón <b>ATRÁS</b> de tu dispositivo.
     </div>
 </div>
 
