@@ -8,7 +8,7 @@
         :root {
             --mlb-blue: #002d62; --mlb-gold: #f2a900;
             --bg: #050a0f; --card: #101820; --text: #ffffff;
-            --success: #25d366;
+            --success: #25d366; --info-box-bg: rgba(255, 255, 255, 0.05);
         }
         body, html { 
             margin: 0; padding: 0; min-height: 100%; 
@@ -21,21 +21,33 @@
         .logo { font-size: 1.8em; font-weight: 900; color: var(--mlb-gold); text-transform: uppercase; }
         .beta-tag { background: red; color: white; font-size: 0.5em; padding: 3px 8px; border-radius: 4px; vertical-align: middle; margin-left: 5px; }
 
-        /* SECCIÓN DE DESCARGA Y ADVERTENCIAS */
-        .box-info {
-            background: rgba(255, 255, 255, 0.03); border: 1px solid #333;
-            padding: 20px; border-radius: 15px; margin-bottom: 25px; text-align: left;
+        /* UNIFICACIÓN DE INFORMACIÓN VIP */
+        .info-vip-box {
+            background: var(--info-box-bg); border: 2px solid var(--mlb-gold);
+            padding: 25px; border-radius: 15px; margin-bottom: 30px; text-align: left;
+            box-shadow: 0 0 15px rgba(242, 169, 0, 0.2);
         }
+        .info-header {
+            font-size: 1.2em; font-weight: bold; color: var(--mlb-gold);
+            margin-bottom: 15px; display: block; border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
         .btn-download {
             background: #28a745; color: white; text-decoration: none;
             padding: 15px 35px; border-radius: 50px; font-weight: bold;
             display: block; margin: 0 auto 20px auto; width: fit-content;
             box-shadow: 0 5px 15px rgba(0,0,0,0.4); transition: 0.3s;
+            text-align: center;
         }
         .btn-download:hover { transform: scale(1.05); background: #218838; }
 
-        .warning-text { font-size: 0.85em; color: #ffcc00; margin-bottom: 10px; display: block; }
-        .guide-text { font-size: 0.85em; color: #00bcff; margin-top: 10px; display: block; }
+        .list-info {
+            list-style: none; padding: 0; margin: 0;
+            font-size: 0.9em; line-height: 1.6; color: #ddd;
+        }
+        .list-info li { margin-bottom: 12px; }
+        .list-info li strong { color: white; }
 
         /* GRID DE JUEGOS */
         .grid { 
@@ -70,24 +82,22 @@
 <div id="app">
     <header>
         <div class="logo">⚾ MLB PREMIUM <span class="beta-tag">VIP</span></div>
-        <p style="font-size: 0.9em; color: #aaa; margin-top: 5px;">Lanzadores Exclusivos • 30 de Marzo</p>
+        <p style="font-size: 0.9em; color: #aaa; margin-top: 5px;">30 de Marzo • Caracas, VZA</p>
     </header>
 
-    <div class="box-info">
+    <div class="info-vip-box">
+        <span class="info-header">🚀 Guía de Instalación y Uso</span>
+        
+        <ul class="list-info">
+            <li>✅ <b>Paso 1:</b> Descarga el instalador usando el botón verde de abajo.</li>
+            <li>⚠️ <b>Nota (.bin):</b> Si el archivo termina en <b>.bin</b> en tu celular, simplemente cámbiale el nombre a <b>.apk</b> en tus descargas para poder instalarlo.</li>
+            <li>📺 <b>TV / Móvil:</b> Toca un juego de la lista para abrir la señal en vivo. Si sale publicidad, ciérrala y dale Play de nuevo.</li>
+            <li>🔄 <b>Regresar:</b> Para volver a la lista de juegos, usa el botón <b>ATRÁS</b> de tu control remoto o celular.</li>
+        </ul>
+
         <a href="https://www.dropbox.com/scl/fi/9op3872ezj1f63p857vpn/app-release.apk?rlkey=faemiwchxpgtly7mjfmbv2af2&st=o1ath186&dl=1" class="btn-download">
            📥 DESCARGAR APP (.APK)
         </a>
-        
-        <span class="warning-text">⚠️ <b>INSTALACIÓN:</b> Si el archivo termina en <b>.bin</b>, cámbiale el nombre a <b>.apk</b> en tus descargas para poder instalarlo.</span>
-        
-        <hr style="border: 0; border-top: 1px solid #333; margin: 15px 0;">
-        
-        <span class="guide-text">📺 <b>CÓMO USAR EN TV / MÓVIL:</b></span>
-        <ul style="font-size: 0.85em; color: #ddd; padding-left: 20px; margin-top: 10px;">
-            <li>Selecciona un juego de la lista para abrir la señal.</li>
-            <li>Si aparece publicidad, ciérrala y dale <b>Play</b> nuevamente.</li>
-            <li>Para volver a la lista de juegos, pulsa el botón <b>ATRÁS</b> en tu control remoto o celular.</li>
-        </ul>
     </div>
 
     <div class="grid">
