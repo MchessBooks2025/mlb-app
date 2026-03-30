@@ -24,9 +24,9 @@
         .logo { font-size: 2.2em; font-weight: 900; color: var(--mlb-gold); text-transform: uppercase; }
         .beta-tag { background: #d00; color: white; font-size: 0.4em; padding: 3px 10px; border-radius: 5px; vertical-align: middle; margin-left: 10px; }
 
-        /* SECCIÓN DE DESCARGA REFORZADA */
+        /* DESCARGA 1-CLIC */
         .download-box {
-            background: rgba(40, 167, 69, 0.1); border: 2px dashed var(--success);
+            background: rgba(40, 167, 69, 0.1); border: 2px solid var(--success);
             padding: 25px; border-radius: 15px; margin-bottom: 35px;
         }
         .btn-download {
@@ -35,12 +35,7 @@
             display: inline-block; font-size: 1.2em; transition: 0.3s;
             box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
         }
-        .btn-download:hover { transform: scale(1.05); background: #218838; }
-
-        .aviso-celular {
-            margin-top: 15px; padding: 12px; background: #222; 
-            border-radius: 8px; font-size: 0.85em; color: #ffcc00; line-height: 1.4;
-        }
+        .btn-download:hover { transform: scale(1.05); }
 
         /* GRID DE JUEGOS */
         .grid { 
@@ -49,20 +44,20 @@
         }
         .btn-game {
             background: var(--card); border: 2px solid var(--mlb-blue);
-            border-radius: 12px; padding: 25px; color: white;
+            border-radius: 12px; padding: 20px; color: white;
             text-align: left; cursor: pointer; transition: 0.2s; outline: none;
             width: 100%;
         }
         .btn-game:focus, .btn-game:hover { 
             background: var(--mlb-gold); color: var(--mlb-blue); 
-            transform: scale(1.03); border-color: white;
+            transform: scale(1.02); border-color: white;
         }
-        .game-title { font-size: 1.3em; font-weight: bold; display: block; }
-        .game-info { font-size: 0.9em; opacity: 0.8; margin-top: 8px; display: block; }
+        .game-title { font-size: 1.2em; font-weight: bold; display: block; }
+        .game-info { font-size: 0.85em; opacity: 0.8; margin-top: 5px; display: block; }
 
         .footer-info {
             margin-top: 40px; padding: 20px; background: #1a1a1a;
-            border-radius: 10px; font-size: 0.9em; line-height: 1.6;
+            border-radius: 10px; font-size: 0.9em; line-height: 1.6; color: #bbb;
         }
     </style>
 </head>
@@ -71,68 +66,86 @@
 <div id="app">
     <header>
         <div class="logo">⚾ MLB PREMIUM <span class="beta-tag">BETA</span></div>
-        <p style="color: #aaa; margin-top: 10px;">Análisis de Usuarios - Fase de Prueba 2026</p>
+        <p style="color: #888; margin-top: 10px;">Lanzadores Exclusivos - Caracas (VZA) Time</p>
     </header>
 
     <div class="download-box">
-        <p style="margin-bottom: 15px; font-weight: bold; font-size: 1.1em;">📥 INSTALACIÓN DIRECTA APK</p>
-        
         <a href="https://www.dropbox.com/scl/fi/9op3872ezj1f63p857vpn/app-release.apk?rlkey=faemiwchxpgtly7mjfmbv2af2&st=o1ath186&dl=1" 
-           download="MLB_Premium_TV.apk" 
+           download="MLB_Premium.apk" 
            type="application/vnd.android.package-archive"
            class="btn-download">
-           DESCARGAR APP (.APK)
+           📥 DESCARGAR APP (.APK)
         </a>
-        
-        <div class="aviso-celular">
-            ⚠️ <b>PARA USUARIOS DE TELÉFONO:</b><br>
-            Si el archivo se guarda con el nombre <b>"app-release.bin"</b>, simplemente ve a tu carpeta de Descargas, renombra el archivo cambiando <b>.bin</b> por <b>.apk</b> y podrás instalarlo normalmente.
-        </div>
+        <p style="font-size: 0.8em; color: #888; margin-top: 10px;">
+            *Si se descarga como .bin en el celular, renómbralo a .apk para instalar.
+        </p>
     </div>
 
     <div class="grid">
         <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723186/', '_blank')">
-            <span class="game-title">Braves @ Athletics</span><span class="game-info">🕒 19:15 Caracas</span>
+            <span class="game-title">Braves @ Athletics</span><span class="game-info">🕒 19:15 VZA</span>
         </button>
 
         <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723183/', '_blank')">
-            <span class="game-title">Cubs @ Angels</span><span class="game-info">🕒 19:40 Caracas</span>
+            <span class="game-title">Cubs @ Angels</span><span class="game-info">🕒 19:40 VZA</span>
         </button>
 
         <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723184/', '_blank')">
-            <span class="game-title">Brewers @ Rays</span><span class="game-info">🕒 19:40 Caracas</span>
+            <span class="game-title">Brewers @ Rays</span><span class="game-info">🕒 19:40 VZA</span>
         </button>
 
         <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723185/', '_blank')">
-            <span class="game-title">Twins @ Orioles</span><span class="game-info">🕒 19:45 Caracas</span>
+            <span class="game-title">Twins @ Orioles</span><span class="game-info">🕒 19:45 VZA</span>
         </button>
 
         <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723189/', '_blank')">
-            <span class="game-title">Cardinals @ Mets</span><span class="game-info">🕒 19:45 Caracas</span>
+            <span class="game-title">Cardinals @ Mets</span><span class="game-info">🕒 19:45 VZA</span>
         </button>
 
         <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723188/', '_blank')">
-            <span class="game-title">Astros @ Red Sox</span><span class="game-info">🕒 20:10 Caracas</span>
+            <span class="game-title">Astros @ Red Sox</span><span class="game-info">🕒 20:10 VZA</span>
+        </button>
+
+        <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723182/', '_blank')">
+            <span class="game-title">Blue Jays @ Tigers</span><span class="game-info">🕒 21:10 VZA</span>
+        </button>
+
+        <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723190/', '_blank')">
+            <span class="game-title">Diamondbacks @ Rangers</span><span class="game-info">🕒 21:10 VZA</span>
+        </button>
+
+        <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723187/', '_blank')">
+            <span class="game-title">Phillies @ Rockies</span><span class="game-info">🕒 21:10 VZA</span>
         </button>
 
         <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723192/', '_blank')">
-            <span class="game-title">Mariners @ Yankees</span><span class="game-info">🕒 21:40 Caracas</span>
+            <span class="game-title">Mariners @ Yankees</span><span class="game-info">🕒 21:40 VZA</span>
         </button>
 
         <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723193/', '_blank')">
-            <span class="game-title">Padres @ Giants</span><span class="game-info">🕒 21:40 Caracas</span>
+            <span class="game-title">Padres @ Giants</span><span class="game-info">🕒 21:40 VZA</span>
         </button>
 
         <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723191/', '_blank')">
-            <span class="game-title">Dodgers @ Guardians</span><span class="game-info">🕒 22:10 Caracas</span>
+            <span class="game-title">Dodgers @ Guardians</span><span class="game-info">🕒 22:10 VZA</span>
+        </button>
+
+        <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723181/', '_blank')">
+            <span class="game-title">Nationals @ Reds</span><span class="game-info">🕒 22:10 VZA</span>
+        </button>
+
+        <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723180/', '_blank')">
+            <span class="game-title">Marlins @ Pirates</span><span class="game-info">🕒 22:10 VZA</span>
+        </button>
+
+        <button class="btn-game" onclick="window.open('https://es8.sportplus.live/baseball/166775/7723179/', '_blank')">
+            <span class="game-title">Royals @ White Sox</span><span class="game-info">🕒 22:40 VZA</span>
         </button>
     </div>
 
     <div class="footer-info">
-        💡 <b>GUÍA RÁPIDA:</b><br>
-        1. Toca un juego para abrir la señal en vivo.<br>
-        2. Usa el botón <b>ATRÁS</b> para regresar a esta lista.<br>
-        3. Si la descarga da problemas, contacta al administrador.
+        <b>💡 TIP:</b> Si el video pide permisos o abre una ventana extra, simplemente ciérrala. <br>
+        Usa el botón <b>Atrás</b> de tu dispositivo para volver a esta lista.
     </div>
 </div>
 
