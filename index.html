@@ -10,71 +10,31 @@
             --bg: #050a0f; --card: #101820; --text: #ffffff;
             --success: #28a745;
         }
-        body, html { 
-            margin: 0; padding: 0; height: 100%; 
-            background: var(--bg); color: var(--text);
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
+        body, html { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: 'Segoe UI', Arial, sans-serif; }
 
-        /* BLOQUEO VIP INMEDIATO */
-        #login-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 99999;
-        }
-        .login-box {
-            background: var(--card); padding: 30px; border-radius: 15px;
-            border: 1px solid var(--mlb-blue); text-align: center; width: 85%; max-width: 350px;
-        }
-        .login-box input {
-            width: 90%; padding: 12px; margin: 20px 0; border-radius: 5px;
-            border: 1px solid var(--mlb-blue); background: #1a242d; color: white;
-            font-size: 1.1em; text-align: center; outline: none;
-        }
-        .btn-login {
-            background: var(--mlb-gold); color: var(--mlb-blue);
-            border: none; padding: 12px 30px; border-radius: 5px;
-            font-weight: bold; cursor: pointer; width: 100%;
-        }
+        #login-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 99999; }
+        .login-box { background: var(--card); padding: 30px; border-radius: 15px; border: 1px solid var(--mlb-blue); text-align: center; width: 85%; max-width: 350px; }
+        .login-box input { width: 90%; padding: 12px; margin: 20px 0; border-radius: 5px; border: 1px solid var(--mlb-blue); background: #1a242d; color: white; font-size: 1.1em; text-align: center; outline: none; }
+        .btn-login { background: var(--mlb-gold); color: var(--mlb-blue); border: none; padding: 12px 30px; border-radius: 5px; font-weight: bold; cursor: pointer; width: 100%; }
 
-        /* APP CONTENT */
         #app-content { display: none; padding: 15px; max-width: 1000px; margin: 0 auto; text-align: center; }
-        
         header { margin-bottom: 20px; }
         .logo { font-size: 1.8em; font-weight: bold; color: var(--mlb-gold); text-transform: uppercase; }
         .vip-tag { color: red; font-size: 0.6em; vertical-align: super; }
         .author { font-size: 0.8em; color: #888; margin-top: 5px; }
 
-        /* CAJA DE DESCARGA SEGÚN IMAGEN */
-        .download-box {
-            border: 1px solid var(--mlb-gold);
-            border-radius: 15px;
-            padding: 35px 15px;
-            margin: 25px 0 40px 0;
-            text-align: center;
-        }
-        .btn-dl {
-            background: var(--success); color: white; text-decoration: none;
-            padding: 15px 45px; border-radius: 50px; font-weight: bold;
-            display: inline-flex; align-items: center; gap: 10px; font-size: 1.1em;
-        }
-        .dl-warning { font-size: 0.85em; color: var(--mlb-gold); margin-top: 15px; display: block; }
+        .download-box { border: 1px solid var(--mlb-gold); border-radius: 15px; padding: 25px 15px; margin: 20px 0 30px 0; text-align: center; background: rgba(255,255,255,0.02); }
+        .btn-dl { background: var(--success); color: white; text-decoration: none; padding: 12px 35px; border-radius: 50px; font-weight: bold; display: inline-block; font-size: 1em; margin-bottom: 15px; }
+        .nav-tips { font-size: 0.8em; color: #00bcff; line-height: 1.4; }
 
-        /* GRID DE 15 JUEGOS */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 60px; }
-        .game-card {
-            background: var(--card); border: 1px solid var(--mlb-blue);
-            border-radius: 8px; padding: 18px; color: white;
-            text-align: left; cursor: pointer; transition: 0.2s;
-        }
-        .game-card:hover { border-color: var(--mlb-gold); background: #16212b; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 50px; }
+        .game-card { background: var(--card); border: 1px solid var(--mlb-blue); border-radius: 8px; padding: 18px; color: white; text-align: left; cursor: pointer; }
         .game-card b { display: block; font-size: 1.1em; margin-bottom: 5px; }
         .game-card span { font-size: 0.85em; color: #aaa; }
 
-        /* MARCA DE AGUA FINAL */
-        .footer-info { font-size: 0.8em; color: #555; margin-bottom: 5px; }
-        .watermark { font-size: 0.75em; color: #444; padding-bottom: 100px; letter-spacing: 1px; font-weight: bold; }
-        
-        .wpp { position: fixed; bottom: 25px; right: 25px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.5); z-index: 999; }
+        .footer-info { font-size: 0.8em; color: #555; margin-top: 20px; }
+        .watermark { font-size: 0.75em; color: #444; padding-bottom: 100px; letter-spacing: 1px; font-weight: bold; margin-top: 5px; }
+        .wpp { position: fixed; bottom: 25px; right: 25px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 999; }
     </style>
 </head>
 <body>
@@ -82,8 +42,7 @@
 <div id="login-screen">
     <div class="login-box">
         <div style="font-size: 1.5em; font-weight: bold; color: var(--mlb-gold);">MLB PREMIUM</div>
-        <p style="color: #aaa; font-size: 0.8em;">Introduce tu clave VIP</p>
-        <input type="text" id="pass-field" placeholder="Clave de acceso" autocomplete="off">
+        <input type="text" id="pass-field" placeholder="Clave VIP" autocomplete="off">
         <button class="btn-login" onclick="validate()">ACCEDER</button>
     </div>
 </div>
@@ -92,72 +51,52 @@
     <header>
         <div class="logo">⚾ MLB PREMIUM <span class="vip-tag">VIP</span></div>
         <div class="author">By Noel Semeco</div>
-        <p style="font-size: 0.8em; color: #444; margin-top: 15px;">Horarios: Caracas, VZA</p>
+        <p style="font-size: 0.8em; color: #444; margin-top: 10px;">Horarios: Caracas, VZA</p>
     </header>
 
     <div class="download-box">
-        <a href="https://www.dropbox.com/scl/fi/9op3872ezj1f63p857vpn/app-release.apk?rlkey=faemiwchxpgtly7mjfmbv2af2&st=o1ath186&dl=1" class="btn-dl">
-            📥 DESCARGAR APP (.APK)
-        </a>
-        <span class="dl-warning">⚠️ Si baja como <b>.bin</b>, cámbialo a <b>.apk</b> en tus descargas.</span>
+        <a href="https://www.dropbox.com/scl/fi/9op3872ezj1f63p857vpn/app-release.apk?rlkey=faemiwchxpgtly7mjfmbv2af2&st=o1ath186&dl=1" class="btn-dl">📥 DESCARGAR APP (.APK)</a>
+        <div class="nav-tips">
+            📺 <b>Uso en TV:</b> Selecciona el juego, cierra la publicidad y <br>
+            usa el botón <b>ATRÁS</b> del control para volver a la lista.
+        </div>
     </div>
 
-    <div class="grid" id="game-grid">
-        </div>
+    <div class="grid">
+        <div class="game-card" onclick="window.location.href='https://es8.sportplus.live/baseball/166775/7723186/'"><b>Braves @ Athletics</b><span>🕒 19:15 VZA</span></div>
+        <div class="game-card" onclick="window.location.href='https://es8.sportplus.live/baseball/166775/7723183/'"><b>Cubs @ Angels</b><span>🕒 19:40 VZA</span></div>
+        <div class="game-card" onclick="window.location.href='https://es8.sportplus.live/baseball/166775/7723184/'"><b>Brewers @ Rays</b><span>🕒 19:40 VZA</span></div>
+        <div class="game-card" onclick="window.location.href='https://es8.sportplus.live/baseball/166775/7723185/'"><b>Twins @ Orioles</b><span>🕒 19:45 VZA</span></div>
+        <div class="game-card" onclick="window.location.href='https://es8.sportplus.live/baseball/166775/7723189/'"><b>Cardinals @ Mets</b><span>🕒 19:45 VZA</span></div>
+        <div class="game-card" onclick="window.location.href='https://es8.sportplus.live/baseball/166775/7723188/'"><b>Astros @ Red Sox</b><span>🕒 20:10 VZA</span></div>
+        <div class="game-card" onclick="window.location.href='https://es8.sportplus.live/baseball/166775/7723182/'"><b>Blue Jays @ Tigers</b><span>🕒 21:10 VZA</span></div>
+        <div class="game-card" onclick="window.location.href='https://es8.sportplus.live/baseball/166775/7723190/'"><b>Diamondbacks @ Rangers</b><span>🕒 21:10 VZA</span></div>
+        <div class="game-card" onclick="window.location.href='https://es8.sportplus.live/baseball/166775/7723187/'"><b>Phillies @ Rockies</b><span>🕒 21:10 VZA</span></div>
+        <div class="game-card" onclick="window.location.href='https://es8.sportplus.live/baseball/166775/7723192/'"><b>Mariners @ Yankees</b><span>🕒 21:40 VZA</span></div>
+        <div class="game-card" onclick="window.location.href='https://es8.sportplus.live/baseball/166775/7723193/'"><b>Padres @ Giants</b><span>🕒 21:40 VZA</span></div>
+        <div class="game-card" onclick="window.location.href='https://es8.sportplus.live/baseball/166775/7723191/'"><b>Dodgers @ Guardians</b><span>🕒 22:10 VZA</span></div>
+        <div class="game-card" onclick="window.location.href='https://es8.sportplus.live/baseball/166775/7723181/'"><b>Nationals @ Reds</b><span>🕒 22:10 VZA</span></div>
+        <div class="game-card" onclick="window.location.href='https://es8.sportplus.live/baseball/166775/7723180/'"><b>Marlins @ Pirates</b><span>🕒 22:10 VZA</span></div>
+        <div class="game-card" onclick="window.location.href='https://es8.sportplus.live/baseball/166775/7723179/'"><b>Royals @ White Sox</b><span>🕒 22:40 VZA</span></div>
+    </div>
 
     <div class="footer-info">MLB Premium - Fase de Prueba Lanzadores Exclusivos</div>
     <div class="watermark">PROPIEDAD INTELECTUAL DE NOEL SEMECO © 2026</div>
 </div>
 
-<a href="https://wa.me/584146028093" class="wpp" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35">
-</a>
+<a href="https://wa.me/584146028093" class="wpp" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35"></a>
 
 <script>
-    const CLAVE = "Promo";
-    const JUEGOS = [
-        {t: "Braves @ Athletics", h: "19:15", l: "7723186"}, {t: "Cubs @ Angels", h: "19:40", l: "7723183"},
-        {t: "Brewers @ Rays", h: "19:40", l: "7723184"}, {t: "Twins @ Orioles", h: "19:45", l: "7723185"},
-        {t: "Cardinals @ Mets", h: "19:45", l: "7723189"}, {t: "Astros @ Red Sox", h: "20:10", l: "7723188"},
-        {t: "Blue Jays @ Tigers", h: "21:10", l: "7723182"}, {t: "Diamondbacks @ Rangers", h: "21:10", l: "7723190"},
-        {t: "Phillies @ Rockies", h: "21:10", l: "7723187"}, {t: "Mariners @ Yankees", h: "21:40", l: "7723192"},
-        {t: "Padres @ Giants", h: "21:40", l: "7723193"}, {t: "Dodgers @ Guardians", h: "22:10", l: "7723191"},
-        {t: "Nationals @ Reds", h: "22:10", l: "7723181"}, {t: "Marlins @ Pirates", h: "22:10", l: "7723180"},
-        {t: "Royals @ White Sox", h: "22:40", l: "7723179"}
-    ];
-
-    // FUNCIÓN DE ENTRADA DIRECTA
-    function checkMemory() {
-        if (localStorage.getItem('noel_vip') === 'activo') {
-            document.getElementById('login-screen').style.display = 'none';
-            document.getElementById('app-content').style.display = 'block';
-            loadGames();
-        }
-    }
-
     function validate() {
-        const val = document.getElementById('pass-field').value;
-        if (val === CLAVE) {
+        if (document.getElementById('pass-field').value === "Promo") {
             localStorage.setItem('noel_vip', 'activo');
-            location.reload(); // Recarga para asegurar que todo cargue limpio
-        } else {
-            alert("Clave incorrecta");
-        }
+            location.reload();
+        } else { alert("Clave incorrecta"); }
     }
-
-    function loadGames() {
-        const container = document.getElementById('game-grid');
-        JUEGOS.forEach(j => {
-            const btn = document.createElement('div');
-            btn.className = 'game-card';
-            btn.onclick = () => { window.location.href = `https://es8.sportplus.live/baseball/166775/${j.l}/`; };
-            btn.innerHTML = `<b>${j.t}</b><span>🕒 ${j.h} VZA</span>`;
-            container.appendChild(btn);
-        });
+    if (localStorage.getItem('noel_vip') === 'activo') {
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('app-content').style.display = 'block';
     }
-
-    checkMemory();
 </script>
-
 </body>
 </html>
