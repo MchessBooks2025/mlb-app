@@ -3,57 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MLB PREMIUM APP</title>
+    <title>MLB PREMIUM TV</title>
     <style>
-        :root { --mlb-blue: #002d62; --mlb-gold: #f2a900; --bg: #050a0f; --card: #101820; --text: #ffffff; }
-        body, html { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: sans-serif; overflow-x: hidden; }
-        #app { padding: 20px; text-align: center; }
-        .logo { font-size: 2.5em; font-weight: 900; color: var(--mlb-gold); margin-bottom: 20px; display: block; text-shadow: 2px 2px #000; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 15px; }
-        .btn { background: var(--card); border: 3px solid var(--mlb-blue); border-radius: 12px; padding: 25px; color: white; text-align: left; cursor: pointer; transition: 0.2s; outline: none; width: 100%; box-sizing: border-box; }
-        .btn:focus { background: var(--mlb-gold); color: var(--mlb-blue); transform: scale(1.03); border-color: white; }
-        .game { font-size: 1.4em; font-weight: bold; display: block; }
-        .info { font-size: 1em; opacity: 0.8; margin-top: 8px; display: block; }
-        #player { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: none; z-index: 9999; }
-        iframe { width: 100%; height: 100%; border: none; }
+        :root {
+            --mlb-blue: #002d62; --mlb-gold: #f2a900;
+            --bg: #050a0f; --card: #101820; --text: #ffffff;
+        }
+        body, html { 
+            margin: 0; padding: 0; min-height: 100%; 
+            background: var(--bg); color: var(--text);
+            font-family: 'Segoe UI', sans-serif;
+        }
+        #app { padding: 20px; max-width: 1200px; margin: 0 auto; text-align: center; }
+        header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            border-bottom: 3px solid var(--mlb-blue); padding-bottom: 15px; margin-bottom: 20px;
+        }
+        .logo { font-size: 2em; font-weight: 900; color: var(--mlb-gold); }
+        .grid { 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 15px;
+        }
+        .btn-game {
+            background: var(--card); border: 3px solid var(--mlb-blue);
+            border-radius: 12px; padding: 25px; color: white;
+            text-align: left; cursor: pointer; transition: 0.2s; outline: none;
+            width: 100%;
+        }
+        .btn-game:focus, .btn-game:hover { 
+            background: var(--mlb-gold); color: var(--mlb-blue); 
+            transform: scale(1.03); border-color: white;
+        }
+        .game-title { font-size: 1.3em; font-weight: bold; display: block; }
+        .game-info { font-size: 0.9em; opacity: 0.8; margin-top: 8px; display: block; }
     </style>
 </head>
 <body>
-    <div id="app">
-        <span class="logo">⚾ MLB PREMIUM</span>
-        <div class="grid">
-            <button class="btn" onclick="play('https://es8.sportplus.live/baseball/166775/7723186/')"><span class="game">Braves @ Athletics</span><span class="info">⏰ 19:15 VZA</span></button>
-            <button class="btn" onclick="play('https://es8.sportplus.live/baseball/166775/7723183/')"><span class="game">Cubs @ Angels</span><span class="info">⏰ 19:40 VZA</span></button>
-            <button class="btn" onclick="play('https://es8.sportplus.live/baseball/166775/7723184/')"><span class="game">Brewers @ Rays</span><span class="info">⏰ 19:40 VZA</span></button>
-            <button class="btn" onclick="play('https://es8.sportplus.live/baseball/166775/7723185/')"><span class="game">Twins @ Orioles</span><span class="info">⏰ 19:45 VZA</span></button>
-            <button class="btn" onclick="play('https://es8.sportplus.live/baseball/166775/7723189/')"><span class="game">Cardinals @ Mets</span><span class="info">⏰ 19:45 VZA</span></button>
-            <button class="btn" onclick="play('https://es8.sportplus.live/baseball/166775/7723188/')"><span class="game">Astros @ Red Sox</span><span class="info">⏰ 20:10 VZA</span></button>
-            <button class="btn" onclick="play('https://es8.sportplus.live/baseball/166775/7723192/')"><span class="game">Mariners @ Yankees</span><span class="info">⏰ 21:40 VZA</span></button>
-            <button class="btn" onclick="play('https://es8.sportplus.live/baseball/166775/7723193/')"><span class="game">Padres @ Giants</span><span class="info">⏰ 21:40 VZA</span></button>
-            <button class="btn" onclick="play('https://es8.sportplus.live/baseball/166775/7723197/')"><span class="game">D-Backs @ Tigers</span><span class="info">⏰ 22:10 VZA</span></button>
-            <button class="btn" onclick="play('https://es8.sportplus.live/baseball/166775/7723191/')"><span class="game">Dodgers @ Guardians</span><span class="info">⏰ 22:10 VZA</span></button>
-            <button class="btn" onclick="play('https://es8.sportplus.live/baseball/166775/7723194/')"><span class="game">Rangers @ Phillies</span><span class="info">Extra 1</span></button>
-            <button class="btn" onclick="play('https://es8.sportplus.live/baseball/166775/7723190/')"><span class="game">Royals @ Brewers</span><span class="info">Extra 2</span></button>
-            <button class="btn" onclick="play('https://es8.sportplus.live/baseball/166775/7723196/')"><span class="game">Marlins @ Nationals</span><span class="info">Extra 3</span></button>
-            <button class="btn" onclick="play('https://es8.sportplus.live/baseball/166775/7723195/')"><span class="game">Rockies @ White Sox</span><span class="info">Extra 4</span></button>
-            <button class="btn" onclick="play('https://es8.sportplus.live/baseball/166775/7723200/')"><span class="game">Blue Jays @ Pirates</span><span class="info">Extra 5</span></button>
-        </div>
+
+<div id="app">
+    <header>
+        <div class="logo">⚾ MLB PREMIUM</div>
+    </header>
+
+    <div class="grid">
+        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723186/')">
+            <span class="game-title">Braves @ Athletics</span><span class="game-info">🕒 19:15 VZA</span>
+        </button>
+        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723183/')">
+            <span class="game-title">Cubs @ Angels</span><span class="game-info">🕒 19:40 VZA</span>
+        </button>
+        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723184/')">
+            <span class="game-title">Brewers @ Rays</span><span class="game-info">🕒 19:40 VZA</span>
+        </button>
+        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723185/')">
+            <span class="game-title">Twins @ Orioles</span><span class="game-info">🕒 19:45 VZA</span>
+        </button>
+        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723189/')">
+            <span class="game-title">Cardinals @ Mets</span><span class="game-info">🕒 19:45 VZA</span>
+        </button>
+        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723188/')">
+            <span class="game-title">Astros @ Red Sox</span><span class="game-info">🕒 20:10 VZA</span>
+        </button>
+        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723192/')">
+            <span class="game-title">Mariners @ Yankees</span><span class="game-info">🕒 21:40 VZA</span>
+        </button>
+        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723193/')">
+            <span class="game-title">Padres @ Giants</span><span class="game-info">🕒 21:40 VZA</span>
+        </button>
+        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723197/')">
+            <span class="game-title">D-Backs @ Tigers</span><span class="game-info">🕒 22:10 VZA</span>
+        </button>
+        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723191/')">
+            <span class="game-title">Dodgers @ Guardians</span><span class="game-info">🕒 22:10 VZA</span>
+        </button>
+        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723194/')">
+            <span class="game-title">Rangers @ Phillies</span><span class="game-info">Extra 1</span>
+        </button>
+        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723190/')">
+            <span class="game-title">Royals @ Brewers</span><span class="game-info">Extra 2</span>
+        </button>
+        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723196/')">
+            <span class="game-title">Marlins @ Nationals</span><span class="game-info">Extra 3</span>
+        </button>
+        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723195/')">
+            <span class="game-title">Rockies @ White Sox</span><span class="game-info">Extra 4</span>
+        </button>
+        <button class="btn-game" onclick="ver('https://es8.sportplus.live/baseball/166775/7723200/')">
+            <span class="game-title">Blue Jays @ Pirates</span><span class="game-info">Extra 5</span>
+        </button>
     </div>
-    <div id="player">
-        <iframe id="video" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-    <script>
-        function play(url) {
-            document.getElementById('video').src = url;
-            document.getElementById('player').style.display = 'block';
-            history.pushState({view: 'player'}, 'MLB PREMIUM');
-        }
-        function stop() {
-            document.getElementById('player').style.display = 'none';
-            document.getElementById('video').src = 'about:blank';
-        }
-        window.onpopstate = stop; // Control del botón ATRÁS
+</div>
+
+<script>
+    function ver(url) {
+        // Este es el truco maestro: abre el video sobre tu app
+        window.location.href = url;
     }
-    </script>
+</script>
 </body>
 </html>
