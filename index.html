@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MLB PREMIUM TV - Fase VIP</title>
+    <title>MLB PREMIUM TV - VIP</title>
     <style>
         :root {
             --mlb-blue: #002d62; --mlb-gold: #f2a900;
@@ -18,32 +18,24 @@
         #app { padding: 15px; max-width: 1000px; margin: 0 auto; text-align: center; }
         
         header { border-bottom: 2px solid var(--mlb-blue); padding-bottom: 15px; margin-bottom: 20px; }
-        .logo { font-size: 1.8em; font-weight: 900; color: var(--mlb-gold); text-transform: uppercase; letter-spacing: 1px; }
+        .logo { font-size: 1.8em; font-weight: 900; color: var(--mlb-gold); text-transform: uppercase; }
         .beta-tag { background: red; color: white; font-size: 0.5em; padding: 3px 8px; border-radius: 4px; vertical-align: middle; margin-left: 5px; }
 
-        /* CAJA DE DESCARGA CON SUPER-ADVERTENCIA */
-        .download-zone {
-            background: rgba(242, 169, 0, 0.05); border: 2px solid var(--mlb-gold);
-            padding: 25px; border-radius: 15px; margin-bottom: 30px;
-            box-shadow: 0 0 20px rgba(242, 169, 0, 0.1);
+        /* SECCIÓN DE DESCARGA Y ADVERTENCIAS */
+        .box-info {
+            background: rgba(255, 255, 255, 0.03); border: 1px solid #333;
+            padding: 20px; border-radius: 15px; margin-bottom: 25px; text-align: left;
         }
         .btn-download {
             background: #28a745; color: white; text-decoration: none;
-            padding: 18px 45px; border-radius: 50px; font-weight: bold;
-            display: inline-block; font-size: 1.2em; box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-            transition: 0.3s;
+            padding: 15px 35px; border-radius: 50px; font-weight: bold;
+            display: block; margin: 0 auto 20px auto; width: fit-content;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4); transition: 0.3s;
         }
         .btn-download:hover { transform: scale(1.05); background: #218838; }
 
-        .super-warning {
-            margin-top: 20px; background: rgba(255, 68, 68, 0.1);
-            border: 2px solid #ff4444; border-radius: 10px;
-            padding: 15px; text-align: left; font-size: 0.9em; color: white;
-            line-height: 1.5;
-        }
-        .icon-warning { color: #ff4444; font-size: 1.2em; font-weight: bold; margin-right: 8px; animation: blink 1s infinite; }
-
-        @keyframes blink { 50% { opacity: 0.3; } }
+        .warning-text { font-size: 0.85em; color: #ffcc00; margin-bottom: 10px; display: block; }
+        .guide-text { font-size: 0.85em; color: #00bcff; margin-top: 10px; display: block; }
 
         /* GRID DE JUEGOS */
         .grid { 
@@ -57,7 +49,7 @@
             border-radius: 10px; padding: 20px; color: white;
             text-align: left; cursor: pointer; width: 100%; outline: none; transition: 0.2s;
         }
-        .btn-game:hover, .btn-game:focus { background: var(--mlb-gold); color: var(--mlb-blue); border-color: white; transform: scale(1.02); }
+        .btn-game:hover { background: var(--mlb-gold); color: var(--mlb-blue); border-color: white; }
         .game-title { font-size: 1.1em; font-weight: bold; display: block; }
         .game-info { font-size: 0.8em; opacity: 0.8; margin-top: 5px; display: block; }
 
@@ -70,7 +62,7 @@
         }
         .wpp-float img { width: 35px; }
 
-        .footer { font-size: 0.8em; color: #666; margin-top: 30px; padding-bottom: 80px; }
+        .footer { font-size: 0.8em; color: #666; padding-bottom: 80px; }
     </style>
 </head>
 <body>
@@ -78,22 +70,24 @@
 <div id="app">
     <header>
         <div class="logo">⚾ MLB PREMIUM <span class="beta-tag">VIP</span></div>
-        <p style="font-size: 0.9em; color: #aaa; margin-top: 5px;">Lanzadores Exclusivos • Jornada 30 de Marzo</p>
+        <p style="font-size: 0.9em; color: #aaa; margin-top: 5px;">Lanzadores Exclusivos • 30 de Marzo</p>
     </header>
 
-    <div class="download-zone">
-        <a href="https://www.dropbox.com/scl/fi/9op3872ezj1f63p857vpn/app-release.apk?rlkey=faemiwchxpgtly7mjfmbv2af2&st=o1ath186&dl=1" 
-           download="MLB_Premium.apk"
-           class="btn-download">
+    <div class="box-info">
+        <a href="https://www.dropbox.com/scl/fi/9op3872ezj1f63p857vpn/app-release.apk?rlkey=faemiwchxpgtly7mjfmbv2af2&st=o1ath186&dl=1" class="btn-download">
            📥 DESCARGAR APP (.APK)
         </a>
-
-        <div class="super-warning">
-            <span class="icon-warning">⚠️</span>
-            <b>ATENCIÓN IMPORTANTE PARA MÓVILES Y TV:</b><br>
-            Si al descargar el archivo aparece con el nombre <b>"app-release.bin"</b>, ¡No te asustes!<br>
-            Ve a tu carpeta de Descargas, mantén presionado el archivo, dale a <b>Renombrar</b> y cambia el final de <b>.bin</b> por <b>.apk</b>. ¡Listo! Ya podrás instalarla normalmente.
-        </div>
+        
+        <span class="warning-text">⚠️ <b>INSTALACIÓN:</b> Si el archivo termina en <b>.bin</b>, cámbiale el nombre a <b>.apk</b> en tus descargas para poder instalarlo.</span>
+        
+        <hr style="border: 0; border-top: 1px solid #333; margin: 15px 0;">
+        
+        <span class="guide-text">📺 <b>CÓMO USAR EN TV / MÓVIL:</b></span>
+        <ul style="font-size: 0.85em; color: #ddd; padding-left: 20px; margin-top: 10px;">
+            <li>Selecciona un juego de la lista para abrir la señal.</li>
+            <li>Si aparece publicidad, ciérrala y dale <b>Play</b> nuevamente.</li>
+            <li>Para volver a la lista de juegos, pulsa el botón <b>ATRÁS</b> en tu control remoto o celular.</li>
+        </ul>
     </div>
 
     <div class="grid">
@@ -115,13 +109,12 @@
     </div>
 
     <div class="footer">
-        MLB PREMIUM • Tu mejor opción para el béisbol en vivo.<br>
-        MLB Premium - Fase de Prueba Lanzadores Exclusivos
+        MLB PREMIUM - Fase de Prueba Lanzadores Exclusivos
     </div>
 </div>
 
 <a href="https://wa.me/584146028093?text=Hola%20MLB%20PREMIUM,%20necesito%20soporte%20con%20la%20App" class="wpp-float" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Soporte Directo">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Soporte">
 </a>
 
 </body>
