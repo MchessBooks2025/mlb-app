@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MULTI-SPORT PREMIUM</title>
+    <title>MULTI-SPORT PREMIUM - NOEL SEMECO</title>
     <style>
         :root {
             --mlb: #f2a900; --nba: #c9082a; --nhl: #a5a9b4;
-            --bg: #050a0f; --card: #101820; --text: #ffffff;
+            --bg: #050a0f; --card: #111d27; --text: #ffffff;
         }
-        body, html { 
-            margin: 0; padding: 0; background: var(--bg); color: var(--text); 
-            font-family: 'Segoe UI', sans-serif; height: 100%; overflow-x: hidden;
-        }
+        body, html { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; }
 
         /* LOGIN */
         #login-screen { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 10000; }
@@ -21,43 +18,42 @@
         .btn-login { background: var(--mlb); color: #000; border: none; padding: 12px; border-radius: 5px; font-weight: bold; width: 100%; cursor: pointer; }
 
         /* HEADER */
-        header { text-align: center; padding: 20px 10px; }
-        .logo { font-size: 1.6em; font-weight: bold; color: var(--mlb); text-transform: uppercase; }
-        .author { font-size: 0.75em; color: #64748b; margin-top: 5px; }
+        header { text-align: center; padding: 25px 10px; background: linear-gradient(to bottom, #111d27, #050a0f); }
+        .logo { font-size: 1.8em; font-weight: bold; color: var(--mlb); text-transform: uppercase; letter-spacing: 1px; }
+        .author { font-size: 0.8em; color: #64748b; margin-top: 5px; font-weight: bold; }
 
-        /* TABS */
-        .tabs { display: flex; justify-content: center; gap: 8px; margin: 15px; position: sticky; top: 0; background: var(--bg); z-index: 100; padding: 10px 0; }
-        .tab-btn { flex: 1; max-width: 110px; padding: 12px 5px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; background: #1e293b; color: #94a3b8; font-size: 0.8em; transition: 0.3s; }
+        /* TABS FIJAS */
+        .tabs { display: flex; justify-content: center; gap: 8px; margin: 0; position: sticky; top: 0; background: #050a0f; z-index: 100; padding: 15px 10px; border-bottom: 1px solid #1e293b; }
+        .tab-btn { flex: 1; max-width: 110px; padding: 12px 5px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; background: #1e293b; color: #94a3b8; font-size: 0.85em; }
         
-        .active-mlb { background: var(--mlb) !important; color: #000 !important; }
-        .active-nba { background: var(--nba) !important; color: #fff !important; }
-        .active-nhl { background: var(--nhl) !important; color: #000 !important; }
+        .active-mlb { background: var(--mlb) !important; color: #000 !important; box-shadow: 0 0 15px rgba(242, 169, 0, 0.3); }
+        .active-nba { background: var(--nba) !important; color: #fff !important; box-shadow: 0 0 15px rgba(201, 8, 42, 0.3); }
+        .active-nhl { background: var(--nhl) !important; color: #000 !important; box-shadow: 0 0 15px rgba(165, 169, 180, 0.3); }
 
-        /* GRID */
-        .grid { display: none; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; padding: 0 15px 100px 15px; max-width: 1000px; margin: 0 auto; }
+        /* GRID SIN LÍMITES */
+        .grid { display: none; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; padding: 20px 15px 120px 15px; max-width: 1100px; margin: 0 auto; }
         .grid.active { display: grid; }
 
         .game-card { 
             background: var(--card); border: 1px solid #1e293b; border-radius: 12px; 
-            padding: 20px; text-decoration: none; display: block; transition: 0.2s;
-            border-left: 5px solid transparent;
+            padding: 20px; text-decoration: none; display: block; 
+            border-left: 6px solid transparent; transition: 0.2s;
         }
-        .game-card:active { transform: scale(0.98); background: #16212b; }
-        .game-card b { display: block; font-size: 1.1em; color: #f8fafc; margin-bottom: 6px; }
-        .game-card span { font-size: 0.85em; font-weight: bold; display: flex; align-items: center; gap: 5px; }
+        .game-card b { display: block; font-size: 1.15em; color: #fff; margin-bottom: 8px; }
+        .game-card span { font-size: 0.9em; font-weight: bold; display: block; }
 
         .mlb-card { border-left-color: var(--mlb); }
         .nba-card { border-left-color: var(--nba); }
         .nhl-card { border-left-color: var(--nhl); }
 
-        .wpp { position: fixed; bottom: 25px; right: 25px; background: #22c55e; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 1000; }
+        .wpp { position: fixed; bottom: 25px; right: 25px; background: #22c55e; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 20px rgba(0,0,0,0.6); z-index: 1000; }
     </style>
 </head>
 <body>
 
 <div id="login-screen">
     <div class="login-box">
-        <div style="font-size: 1.5em; font-weight: bold; color: var(--mlb);">PREMIUM VIP</div>
+        <div style="font-size: 1.6em; font-weight: bold; color: var(--mlb);">ALL-SPORTS VIP</div>
         <input type="text" id="pass" placeholder="Clave de Acceso">
         <button class="btn-login" onclick="check()">ENTRAR</button>
     </div>
@@ -83,29 +79,43 @@
         <a href="https://es8.sportplus.live/baseball/166775/7727513/" class="game-card mlb-card"><b>Tigers @ Marlins</b><span style="color:var(--mlb)">🕒 19:10 VZA</span></a>
         <a href="https://es8.sportplus.live/baseball/166775/7727282/" class="game-card mlb-card"><b>Royals @ Rays</b><span style="color:var(--mlb)">🕒 19:10 VZA</span></a>
         <a href="https://es8.sportplus.live/baseball/166775/7726803/" class="game-card mlb-card"><b>Blue Jays @ Braves</b><span style="color:var(--mlb)">🕒 19:20 VZA</span></a>
+        <a href="https://es8.sportplus.live/baseball/166775/7726831/" class="game-card mlb-card"><b>Astros @ Twins</b><span style="color:var(--mlb)">🕒 19:40 VZA</span></a>
+        <a href="https://es8.sportplus.live/baseball/166775/7726834/" class="game-card mlb-card"><b>Rangers @ White Sox</b><span style="color:var(--mlb)">🕒 19:40 VZA</span></a>
+        <a href="https://es8.sportplus.live/baseball/166775/7726830/" class="game-card mlb-card"><b>Mets @ Cardinals</b><span style="color:var(--mlb)">🕒 19:45 VZA</span></a>
+        <a href="https://es8.sportplus.live/baseball/166775/7726832/" class="game-card mlb-card"><b>Cubs @ Brewers</b><span style="color:var(--mlb)">🕒 20:10 VZA</span></a>
+        <a href="https://es8.sportplus.live/baseball/166775/7726833/" class="game-card mlb-card"><b>Rockies @ Diamondbacks</b><span style="color:var(--mlb)">🕒 20:40 VZA</span></a>
+        <a href="https://es8.sportplus.live/baseball/166775/7726977/" class="game-card mlb-card"><b>Mariners @ Athletics</b><span style="color:var(--mlb)">🕒 21:40 VZA</span></a>
+        <a href="https://es8.sportplus.live/baseball/166775/7727680/" class="game-card mlb-card"><b>Giants @ Dodgers</b><span style="color:var(--mlb)">🕒 22:10 VZA</span></a>
     </div>
 
     <div id="grid-nba" class="grid">
-        <a href="https://es8.sportplus.live/basketball/nba/7727580/" class="game-card nba-card"><b>Nuggets @ Bucks</b><span style="color:var(--nba)">🕒 EN VIVO</span></a>
-        <a href="https://es8.sportplus.live/basketball/nba/7727485/" class="game-card nba-card"><b>Lakers @ Mavericks</b><span style="color:var(--nba)">🕒 EN VIVO</span></a>
-        <a href="https://es8.sportplus.live/basketball/nba/7726686/" class="game-card nba-card"><b>Celtics @ Heat</b><span style="color:var(--nba)">🕒 EN VIVO</span></a>
-        <a href="https://es8.sportplus.live/basketball/nba/7727439/" class="game-card nba-card"><b>Suns @ Warriors</b><span style="color:var(--nba)">🕒 EN VIVO</span></a>
-        <a href="https://es8.sportplus.live/basketball/nba/7727815/" class="game-card nba-card"><b>Knicks @ 76ers</b><span style="color:var(--nba)">🕒 EN VIVO</span></a>
+        <a href="https://es8.sportplus.live/basketball/nba/7727580/" class="game-card nba-card"><b>Nuggets @ Bucks</b><span style="color:var(--nba)">🕒 EN VIVO VZA</span></a>
+        <a href="https://es8.sportplus.live/basketball/nba/7727485/" class="game-card nba-card"><b>Lakers @ Mavericks</b><span style="color:var(--nba)">🕒 EN VIVO VZA</span></a>
+        <a href="https://es8.sportplus.live/basketball/nba/7726686/" class="game-card nba-card"><b>Celtics @ Heat</b><span style="color:var(--nba)">🕒 EN VIVO VZA</span></a>
+        <a href="https://es8.sportplus.live/basketball/nba/7727439/" class="game-card nba-card"><b>Suns @ Warriors</b><span style="color:var(--nba)">🕒 EN VIVO VZA</span></a>
+        <a href="https://es8.sportplus.live/basketball/nba/7727815/" class="game-card nba-card"><b>Knicks @ 76ers</b><span style="color:var(--nba)">🕒 EN VIVO VZA</span></a>
+        <a href="https://es8.sportplus.live/basketball/nba/7726524/" class="game-card nba-card"><b>Bulls @ Hawks</b><span style="color:var(--nba)">🕒 EN VIVO VZA</span></a>
+        <a href="https://es8.sportplus.live/basketball/nba/7726685/" class="game-card nba-card"><b>Clippers @ Kings</b><span style="color:var(--nba)">🕒 EN VIVO VZA</span></a>
     </div>
 
     <div id="grid-nhl" class="grid">
-        <a href="https://es8.sportplus.live/hockey/nhl/7721583/" class="game-card nhl-card"><b>Capitals @ Sabres</b><span style="color:var(--nhl)">🕒 EN VIVO</span></a>
-        <a href="https://es8.sportplus.live/hockey/nhl/7721584/" class="game-card nhl-card"><b>Penguins @ Devils</b><span style="color:var(--nhl)">🕒 EN VIVO</span></a>
-        <a href="https://es8.sportplus.live/hockey/nhl/7721585/" class="game-card nhl-card"><b>Islanders @ Rangers</b><span style="color:var(--nhl)">🕒 EN VIVO</span></a>
-        <a href="https://es8.sportplus.live/hockey/nhl/7721586/" class="game-card nhl-card"><b>Flyers @ Hurricanes</b><span style="color:var(--nhl)">🕒 EN VIVO</span></a>
-        <a href="https://es8.sportplus.live/hockey/nhl/7721597/" class="game-card nhl-card"><b>Bruins @ Lightning</b><span style="color:var(--nhl)">🕒 EN VIVO</span></a>
+        <a href="https://es8.sportplus.live/hockey/nhl/7721583/" class="game-card nhl-card"><b>Capitals @ Sabres</b><span style="color:var(--nhl)">🕒 EN VIVO VZA</span></a>
+        <a href="https://es8.sportplus.live/hockey/nhl/7721584/" class="game-card nhl-card"><b>Penguins @ Devils</b><span style="color:var(--nhl)">🕒 EN VIVO VZA</span></a>
+        <a href="https://es8.sportplus.live/hockey/nhl/7721585/" class="game-card nhl-card"><b>Islanders @ Rangers</b><span style="color:var(--nhl)">🕒 EN VIVO VZA</span></a>
+        <a href="https://es8.sportplus.live/hockey/nhl/7721586/" class="game-card nhl-card"><b>Flyers @ Hurricanes</b><span style="color:var(--nhl)">🕒 EN VIVO VZA</span></a>
+        <a href="https://es8.sportplus.live/hockey/nhl/7721597/" class="game-card nhl-card"><b>Bruins @ Lightning</b><span style="color:var(--nhl)">🕒 EN VIVO VZA</span></a>
+        <a href="https://es8.sportplus.live/hockey/nhl/7721590/" class="game-card nhl-card"><b>Red Wings @ Panthers</b><span style="color:var(--nhl)">🕒 EN VIVO VZA</span></a>
+        <a href="https://es8.sportplus.live/hockey/nhl/7721612/" class="game-card nhl-card"><b>Blue Jackets @ Stars</b><span style="color:var(--nhl)">🕒 EN VIVO VZA</span></a>
+        <a href="https://es8.sportplus.live/hockey/nhl/7721588/" class="game-card nhl-card"><b>Maple Leafs @ Wild</b><span style="color:var(--nhl)">🕒 EN VIVO VZA</span></a>
+        <a href="https://es8.sportplus.live/hockey/nhl/7721587/" class="game-card nhl-card"><b>Predators @ Jets</b><span style="color:var(--nhl)">🕒 EN VIVO VZA</span></a>
+        <a href="https://es8.sportplus.live/hockey/nhl/7721589/" class="game-card nhl-card"><b>Kings @ Oilers</b><span style="color:var(--nhl)">🕒 EN VIVO VZA</span></a>
     </div>
 
-    <div style="text-align:center; padding: 20px; font-size: 0.7em; color: #334155;">PROPIEDAD INTELECTUAL DE NOEL SEMECO © 2026</div>
+    <div style="text-align:center; padding: 30px; font-size: 0.75em; color: #334155; font-weight: bold;">© 2026 NOEL SEMECO - TODOS LOS DERECHOS RESERVADOS</div>
 </div>
 
 <a href="https://wa.me/584146028093" class="wpp" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="30">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35">
 </a>
 
 <script>
@@ -120,11 +130,12 @@
 
         document.getElementById(btns[type]).classList.add('active-' + type);
         document.getElementById(grids[type]).classList.add('active');
+        window.scrollTo(0,0);
     }
 
     function check() {
         if(document.getElementById('pass').value === "Promo") {
-            localStorage.setItem('vip_access_2026', 'true');
+            localStorage.setItem('vip_full_2026', 'true');
             showApp();
         } else { alert("Clave Incorrecta"); }
     }
@@ -134,7 +145,7 @@
         document.getElementById('app-content').style.display = 'block';
     }
 
-    window.onload = () => { if(localStorage.getItem('vip_access_2026')) showApp(); };
+    window.onload = () => { if(localStorage.getItem('vip_full_2026')) showApp(); };
 </script>
 </body>
 </html>
