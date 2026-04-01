@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP PRO v8.0 - Full Secure</title>
+    <title>VIP PRO v8.0 - Full Secure 01/04</title>
     <style>
         :root { --mlb: #f2a900; --nba: #ff4d4d; --nhl: #00bcff; --bg: #030712; --card: #111827; --border: #1f2937; }
-        body { margin: 0; background: var(--bg); color: #fff; font-family: system-ui, sans-serif; }
+        body { margin: 0; background: var(--bg); color: #fff; font-family: system-ui, sans-serif; overflow-x: hidden; }
         
         /* SEGURIDAD: PANTALLA DE BLOQUEO */
         #lock-screen { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 10000; }
@@ -82,53 +82,48 @@
 
 <script>
 /**
- * VAULT MODULE: Encapsulamiento total para seguridad.
+ * VAULT MODULE: Encapsulamiento total.
  */
 const Vault = (() => {
     'use strict';
 
-    // Clave ofuscada: "Promo"
     const _H = "UHJvbW8="; 
     const _S = "c2VzX3ZpcF8yMDI2"; 
 
-    // DATA COMPLETA (31 JUEGOS) ENCRIPTADA EN BASE64
+    // DATA ACTUALIZADA: 01/04/2026
     const _D = {
         mlb: [
-            { t: "Orioles @ Red Sox", h: "18:40 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3Mjc3NjMv" },
-            { t: "Guardians @ Yankees", h: "19:05 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MjY4MDIv" },
-            { t: "Nationals @ Phillies", h: "19:05 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MjY4MDQv" },
-            { t: "Pirates @ Reds", h: "19:10 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MjcyODEv" },
-            { t: "Tigers @ Marlins", h: "19:10 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3Mjc1MTMv" },
-            { t: "Royals @ Rays", h: "19:10 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MjcyODIv" },
-            { t: "Blue Jays @ Braves", h: "19:20 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MjY4MDMv" },
-            { t: "Astros @ Twins", h: "19:40 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MjY4MzEv" },
-            { t: "Rangers @ White Sox", h: "19:40 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MjY4MzQv" },
-            { t: "Mets @ Cardinals", h: "19:45 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MjY4MzAv" },
-            { t: "Cubs @ Brewers", h: "20:10 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MjY4MzIv" },
-            { t: "Rockies @ Diamondbacks", h: "20:40 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MjY4MzMv" },
-            { t: "Mariners @ Athletics", h: "21:40 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MjY5Nzcv" },
-            { t: "Giants @ Dodgers", h: "22:10 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3Mjc2ODAv" }
+            { t: "Orioles @ Red Sox", h: "18:40 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDAv" },
+            { t: "Guardians @ Yankees", h: "19:05 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzExMzYv" },
+            { t: "Nationals @ Phillies", h: "19:05 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3Mjk5OTkv" },
+            { t: "Pirates @ Reds", h: "19:10 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDUv" },
+            { t: "Tigers @ Marlins", h: "19:10 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDEv" },
+            { t: "Royals @ Rays", h: "19:10 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDMv" },
+            { t: "Blue Jays @ Braves", h: "19:20 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDgv" },
+            { t: "Astros @ Twins", h: "19:40 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDQv" },
+            { t: "Rangers @ White Sox", h: "19:40 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDIv" },
+            { t: "Mets @ Cardinals", h: "19:45 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMTEv" },
+            { t: "Cubs @ Brewers", h: "20:10 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzA2NDEv" },
+            { t: "Rockies @ Diamondbacks", h: "20:40 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDcv" },
+            { t: "Mariners @ Athletics", h: "21:40 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDkv" },
+            { t: "Giants @ Dodgers", h: "22:10 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDYv" },
+            { t: "Padres @ Angels", h: "22:10 VZA", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMTAv" }
         ],
         nba: [
-            { t: "Nuggets @ Bucks", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzcyNzU4MC8=" },
-            { t: "Lakers @ Mavericks", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzcyNzQ4NS8=" },
-            { t: "Celtics @ Heat", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzcyNjY4Ni8=" },
-            { t: "Suns @ Warriors", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzcyNzQzOS8=" },
-            { t: "Knicks @ 76ers", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzcyNzgxNS8=" },
-            { t: "Bulls @ Hawks", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzcyNjUyNC8=" },
-            { t: "Clippers @ Kings", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzcyNjY4NS8=" }
+            { t: "Pacers @ Nets", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMDk4MC8=" },
+            { t: "Hornets @ Hawks", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMTA0MS8=" },
+            { t: "Celtics @ Heat", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMDM5NS8=" },
+            { t: "Pistons @ Timberwolves", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMTAyMy8=" },
+            { t: "Spurs @ Jazz", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMTA1OS8=" },
+            { t: "Mavericks @ Nuggets", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMTA4MS8=" },
+            { t: "Kings @ Warriors", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMTA4Mi8=" },
+            { t: "Suns @ Clippers", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMDk0My8=" },
+            { t: "Rockets @ Lakers", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMDUwNC8=" }
         ],
         nhl: [
-            { t: "Capitals @ Sabres", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzIxNTgzLw==" },
-            { t: "Penguins @ Devils", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzIxNTg0Lw==" },
-            { t: "Islanders @ Rangers", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzIxNTg1Lw==" },
-            { t: "Flyers @ Hurricanes", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzIxNTg2Lw==" },
-            { t: "Bruins @ Lightning", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzIxNTk3Lw==" },
-            { t: "Red Wings @ Panthers", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzIxNTkwLw==" },
-            { t: "Blue Jackets @ Stars", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzIxNjEyLw==" },
-            { t: "Maple Leafs @ Wild", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzIxNTg4Lw==" },
-            { t: "Predators @ Jets", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzIxNTg3Lw==" },
-            { t: "Kings @ Oilers", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzIxNTg5Lw==" }
+            { t: "Capitals @ Sabres", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzI1MDQ3Lw==" },
+            { t: "Penguins @ Devils", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzI1MDQ4Lw==" },
+            { t: "Islanders @ Rangers", h: "LIVE", u: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzI1MDQ2Lw==" }
         ]
     };
 
@@ -157,10 +152,7 @@ const Vault = (() => {
             if (btoa(val) === _H) {
                 sessionStorage.setItem(_S, "1");
                 location.reload();
-            } else {
-                console.warn("🔐 Intento fallido.");
-                alert("Acceso denegado");
-            }
+            } else { alert("Acceso denegado"); }
         },
         go: (u) => { window.open(atob(u), '_blank'); },
         tab: (l) => {
