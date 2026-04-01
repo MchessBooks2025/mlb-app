@@ -3,37 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP SPORTS PRO v8.4</title>
+    <title>VIP SPORTS FULL v8.9</title>
     <style>
         :root { --mlb: #f2a900; --nba: #ff4d4d; --nhl: #00bcff; --bg: #030712; --card: #111827; --border: #1f2937; }
         body { margin: 0; background: var(--bg); color: #fff; font-family: system-ui, -apple-system, sans-serif; -webkit-tap-highlight-color: transparent; }
-        
         #lock-screen { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 10000; }
         .lock-box { background: var(--card); padding: 35px; border-radius: 20px; border: 1px solid var(--border); width: 300px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.7); }
         input { width: 100%; padding: 14px; margin: 20px 0; border-radius: 10px; border: 1px solid #374151; background: #000; color: #fff; box-sizing: border-box; text-align: center; font-size: 1.2rem; outline: none; }
-        
         .main-app { display: none; }
         .header { text-align: center; padding: 25px 20px; background: linear-gradient(to bottom, #0f172a, #030712); border-bottom: 1px solid var(--border); }
         .search-bar { width: 90%; max-width: 450px; padding: 12px 25px; border-radius: 25px; border: 1px solid var(--border); background: #000; color: #fff; margin-top: 15px; outline: none; }
-        
         .tabs { display: flex; justify-content: center; gap: 8px; padding: 12px; position: sticky; top: 0; background: rgba(3, 7, 18, 0.95); backdrop-filter: blur(15px); z-index: 100; border-bottom: 1px solid var(--border); }
         .tab-btn { flex: 1; padding: 12px; border: none; border-radius: 10px; background: var(--border); color: #9ca3af; font-weight: bold; font-size: 0.8rem; cursor: pointer; }
-        
         .act-mlb { background: var(--mlb) !important; color: #000 !important; }
         .act-nba { background: var(--nba) !important; color: #fff !important; }
         .act-nhl { background: var(--nhl) !important; color: #fff !important; }
-
         .grid { display: none; padding: 20px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
         .is-active { display: grid !important; }
-
         .game-card { background: var(--card); border-radius: 15px; padding: 20px; border: 1px solid var(--border); border-left: 6px solid transparent; transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
         .b-mlb { border-left-color: var(--mlb); }
         .b-nba { border-left-color: var(--nba); }
         .b-nhl { border-left-color: var(--nhl); }
-
         .game-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 5px; display: block; }
         .game-time { font-size: 0.85rem; color: #9ca3af; margin-bottom: 15px; display: block; }
-
         .btn-group { display: flex; gap: 10px; }
         .btn-opt { flex: 1; padding: 12px; border-radius: 8px; text-decoration: none; text-align: center; font-size: 0.75rem; font-weight: 800; color: #fff; background: #1f2937; border: 1px solid rgba(255,255,255,0.05); }
     </style>
@@ -42,16 +34,16 @@
 
 <div id="lock-screen">
     <div class="lock-box">
-        <h2 style="color:var(--mlb); margin:0; letter-spacing: 2px;">VIP ACCESS</h2>
+        <h2 style="color:var(--mlb); margin:0; letter-spacing: 2px;">VIP SPORTS</h2>
         <input type="password" id="k" placeholder="••••••••" autocomplete="off">
-        <button style="width: 100%; padding: 14px; background: var(--mlb); border: none; border-radius: 10px; font-weight: bold; cursor: pointer;" onclick="Vault.open()">ACCEDER</button>
+        <button style="width: 100%; padding: 14px; background: var(--mlb); border: none; border-radius: 10px; font-weight: bold; cursor: pointer;" onclick="Vault.open()">DESBLOQUEAR</button>
     </div>
 </div>
 
 <div id="app-ui" class="main-app">
     <header class="header">
         <h1 style="margin:0; font-size:1.6rem;">SPORTS HUB <span style="color:var(--mlb)">PRO</span></h1>
-        <input type="text" id="s" class="search-bar" placeholder="🔍 Buscar..." onkeyup="Vault.filter()">
+        <input type="text" id="s" class="search-bar" placeholder="🔍 Buscar equipos..." onkeyup="Vault.filter()">
     </header>
 
     <nav class="tabs">
@@ -72,7 +64,6 @@ const Vault = (() => {
     const _H = "UHJvbW8="; 
     const _S = "c2VzX3ZpcF8yMDI2"; 
 
-    // DATA CORREGIDA AL 100% - 01/04/2026 (HORA CARACAS)
     const _D = {
         mlb: [
             { t: "Athletics @ Braves", h: "12:15", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDgv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9hdGhsZXRpY3MtdnMtYXRsYW50YS1icmF2ZXMtMi8=" },
@@ -93,9 +84,16 @@ const Vault = (() => {
         ],
         nba: [
             { t: "76ers @ Wizards", h: "19:00", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMDk4MC8=", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9waGlsYWRlbHBoaWEtNzZlcnMtdnMtd2FzaGluZ3Rvbi13aXphcmRzLTEv" },
-            { t: "Bucks @ Rockets", h: "20:00", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMDM5NS8=", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9taWx3YXVrZWUtYnVja3MtdnMtaG91c3Rvbi1yb2NrZXRzLz" }
+            { t: "Bucks @ Rockets", h: "20:00", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMDM5NS8=", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9taWx3YXVrZWUtYnVja3MtdnMtaG91c3Rvbi1yb2NrZXRzLz" },
+            { t: "Hawks @ Magic", h: "20:00", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMTAyMy8=", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9hdGxhbnRhLWhhd2tzLXZzLW9ybGFuZG8tbWFnaWMtMS8=" },
+            { t: "Kings @ Raptors", h: "20:00", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMTA1OS8=", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9zYWNyYW1lbnRvLWtpbmdzLXZzLXRvcm9udG8tcmFwdG9ycy8=" }
         ],
         nhl: [
+            { t: "Rangers @ Devils", h: "19:00", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzI1MDQwLw==", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25obC9uZXcteW9yay1yYW5nZXJzLXZzLW5ldy1qZXJzZXktZGV2aWxzLTEv" },
+            { t: "Red Wings @ Bruins", h: "19:00", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzI1MDQxLw==", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25obC9kZXRyb2l0LXJlZC13aW5ncy12cy1ib3N0b24tYnJ1aW5zLTEv" },
+            { t: "Lightning @ Maple Leafs", h: "19:00", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzI1MDQyLw==", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25obC90YW1wYS1iYXktbGlnaHRuaW5nLXZzLXRvcm9udG8tbWFwbGUtbGVhdmVzLTEv" },
+            { t: "Flyers @ Hurricanes", h: "19:00", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzI1MDQzLw==", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25obC9waGlsYWRlbHBoaWEtZmx5ZXJzLXZzLWNhcm9saW5hLWh1cnJpY2FuZXMtMS8=" },
+            { t: "Stars @ Blackhawks", h: "20:30", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzI1MDQ1Lw==", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25obC9kYWxsYXMtc3RhcnMtdnMtY2hpY2Fnby1ibGFja2hhd2tzLTEv" },
             { t: "Canucks @ Avalanche", h: "22:00", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzI1MDQ3Lw==", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25obC92YW5jb3V2ZXItY2FudWNrcy12cy1jb2xvcmFkby1hdmFsYW5jaGUtMS8=" }
         ]
     };
