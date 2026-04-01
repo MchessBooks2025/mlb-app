@@ -3,61 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP PRO v8.2 - Dual Link System</title>
+    <title>VIP SPORTS PRO v8.4</title>
     <style>
         :root { --mlb: #f2a900; --nba: #ff4d4d; --nhl: #00bcff; --bg: #030712; --card: #111827; --border: #1f2937; }
-        body { margin: 0; background: var(--bg); color: #fff; font-family: system-ui, sans-serif; }
+        body { margin: 0; background: var(--bg); color: #fff; font-family: system-ui, -apple-system, sans-serif; -webkit-tap-highlight-color: transparent; }
         
-        /* BLOQUEO */
         #lock-screen { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 10000; }
-        .lock-box { background: var(--card); padding: 30px; border-radius: 15px; border: 1px solid var(--border); width: 280px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        input { width: 100%; padding: 12px; margin: 15px 0; border-radius: 8px; border: 1px solid #374151; background: #000; color: #fff; box-sizing: border-box; text-align: center; font-size: 1.1rem; }
-        .btn-access { width: 100%; padding: 12px; background: var(--mlb); border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
-
-        /* APP */
-        .main-app { display: none; }
-        .header { text-align: center; padding: 20px; background: #0f172a; border-bottom: 1px solid var(--border); }
-        .search-bar { width: 85%; max-width: 400px; padding: 10px 20px; border-radius: 20px; border: 1px solid var(--border); background: #000; color: #fff; margin-top: 10px; }
+        .lock-box { background: var(--card); padding: 35px; border-radius: 20px; border: 1px solid var(--border); width: 300px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.7); }
+        input { width: 100%; padding: 14px; margin: 20px 0; border-radius: 10px; border: 1px solid #374151; background: #000; color: #fff; box-sizing: border-box; text-align: center; font-size: 1.2rem; outline: none; }
         
-        .tabs { display: flex; justify-content: center; gap: 5px; padding: 10px; position: sticky; top: 0; background: rgba(3, 7, 18, 0.9); backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid var(--border); }
-        .tab-btn { flex: 1; padding: 12px 5px; border: none; border-radius: 8px; background: var(--border); color: #9ca3af; font-weight: bold; font-size: 0.7rem; cursor: pointer; }
+        .main-app { display: none; }
+        .header { text-align: center; padding: 25px 20px; background: linear-gradient(to bottom, #0f172a, #030712); border-bottom: 1px solid var(--border); }
+        .search-bar { width: 90%; max-width: 450px; padding: 12px 25px; border-radius: 25px; border: 1px solid var(--border); background: #000; color: #fff; margin-top: 15px; outline: none; }
+        
+        .tabs { display: flex; justify-content: center; gap: 8px; padding: 12px; position: sticky; top: 0; background: rgba(3, 7, 18, 0.95); backdrop-filter: blur(15px); z-index: 100; border-bottom: 1px solid var(--border); }
+        .tab-btn { flex: 1; padding: 12px; border: none; border-radius: 10px; background: var(--border); color: #9ca3af; font-weight: bold; font-size: 0.8rem; cursor: pointer; }
         
         .act-mlb { background: var(--mlb) !important; color: #000 !important; }
         .act-nba { background: var(--nba) !important; color: #fff !important; }
         .act-nhl { background: var(--nhl) !important; color: #fff !important; }
 
-        .grid { display: none; padding: 20px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
+        .grid { display: none; padding: 20px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
         .is-active { display: grid !important; }
 
-        /* TARJETAS DUAL LINK */
-        .game-card { background: var(--card); border-radius: 12px; padding: 18px; border: 1px solid var(--border); border-left: 6px solid transparent; transition: 0.2s; }
+        .game-card { background: var(--card); border-radius: 15px; padding: 20px; border: 1px solid var(--border); border-left: 6px solid transparent; transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
         .b-mlb { border-left-color: var(--mlb); }
         .b-nba { border-left-color: var(--nba); }
         .b-nhl { border-left-color: var(--nhl); }
 
-        .btn-group { display: flex; gap: 8px; margin-top: 12px; }
-        .btn-opt { flex: 1; padding: 10px; border-radius: 6px; text-decoration: none; text-align: center; font-size: 0.7rem; font-weight: bold; color: #fff; background: #1f2937; border: 1px solid #374151; transition: 0.2s; }
-        .btn-opt:active { transform: scale(0.95); }
-        .btn-primary { border-color: rgba(255,255,255,0.2); background: #2d3748; }
-        .btn-backup { color: #9ca3af; background: rgba(255,255,255,0.05); }
+        .game-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 5px; display: block; }
+        .game-time { font-size: 0.85rem; color: #9ca3af; margin-bottom: 15px; display: block; }
 
-        .nav-info { margin: 30px 20px; padding: 20px; border: 1px solid var(--nhl); border-radius: 12px; background: rgba(0,188,255,0.05); font-size: 0.85rem; color: #9ca3af; }
+        .btn-group { display: flex; gap: 10px; }
+        .btn-opt { flex: 1; padding: 12px; border-radius: 8px; text-decoration: none; text-align: center; font-size: 0.75rem; font-weight: 800; color: #fff; background: #1f2937; border: 1px solid rgba(255,255,255,0.05); }
     </style>
 </head>
 <body>
 
 <div id="lock-screen">
     <div class="lock-box">
-        <h2 style="color:var(--mlb); margin:0;">VIP ACCESS</h2>
-        <input type="password" id="k" placeholder="CLAVE" autocomplete="off">
-        <button class="btn-access" onclick="Vault.open()">ENTRAR</button>
+        <h2 style="color:var(--mlb); margin:0; letter-spacing: 2px;">VIP ACCESS</h2>
+        <input type="password" id="k" placeholder="••••••••" autocomplete="off">
+        <button style="width: 100%; padding: 14px; background: var(--mlb); border: none; border-radius: 10px; font-weight: bold; cursor: pointer;" onclick="Vault.open()">ACCEDER</button>
     </div>
 </div>
 
 <div id="app-ui" class="main-app">
     <header class="header">
-        <h1 style="margin:0; font-size:1.5rem;">SPORTS HUB <span style="color:var(--mlb)">PRO</span></h1>
-        <input type="text" id="s" class="search-bar" placeholder="🔍 Buscar equipos..." onkeyup="Vault.filter()">
+        <h1 style="margin:0; font-size:1.6rem;">SPORTS HUB <span style="color:var(--mlb)">PRO</span></h1>
+        <input type="text" id="s" class="search-bar" placeholder="🔍 Buscar..." onkeyup="Vault.filter()">
     </header>
 
     <nav class="tabs">
@@ -70,54 +64,39 @@
         <div id="g-mlb" class="grid is-active"></div>
         <div id="g-nba" class="grid"></div>
         <div id="g-nhl" class="grid"></div>
-        
-        <div class="nav-info">
-            <b>🛡️ SISTEMA FAIL-SAFE:</b><br>
-            Si la Opción 1 falla, use la Opción 2 (Respaldo).
-        </div>
     </main>
 </div>
 
 <script>
 const Vault = (() => {
-    'use strict';
     const _H = "UHJvbW8="; 
     const _S = "c2VzX3ZpcF8yMDI2"; 
 
-    // DATA ACTUALIZADA 01/04/2026 CON BACKUP
+    // DATA CORREGIDA AL 100% - 01/04/2026 (HORA CARACAS)
     const _D = {
         mlb: [
-            { t: "Athletics @ Braves", h: "19:20", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDgv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9hdGhsZXRpY3MtdnMtYXRsYW50YS1icmF2ZXMtMi8=" },
-            { t: "Rangers @ Orioles", h: "18:40", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDAv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi90ZXhhcy1yYW5nZXJzLXZzLWJhbHRpbW9yZS1vcmlvbGVzLTIv" },
-            { t: "Nationals @ Phillies", h: "19:05", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3Mjk5OTkv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi93YXNoaW5ndG9uLW5hdGlvbmFscy12cy1waGlsYWRlbHBoaWEtcGhpbGxpZXMtMy8=" },
-            { t: "Rockies @ Blue Jays", h: "19:07", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzA2NDEv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9jb2xvcmFkby1yb2NraWVzLXZzLXRvcm9udG8tYmx1ZS1qYXlzLTIv" },
-            { t: "Mets @ Cardinals", h: "19:45", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMTEv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9uZXcteW9yay1tZXRzLXZzLXN0LWxvdWlzLWNhcmRpbmFscy01Lz" },
-            { t: "Rays @ Brewers", h: "20:10", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDMv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi90YW1wYS1iYXktcmF5cy12cy1taWx3YXVrZWUtYnJld2Vycy0yLz" },
-            { t: "Angels @ Cubs", h: "20:10", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMTAv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9sb3MtYW5nZWxlcy1hbmdlbHMtdnMtY2hpY2Fnby1jdWJzLTMv" },
-            { t: "Tigers @ D-Backs", h: "20:40", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDEv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9kZXRyb2l0LXRpZ2Vycy12cy1hcml6b25hLWRpYW1vbmRiYWNrcy0yLz" },
-            { t: "Giants @ Padres", h: "22:10", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDYv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9zYW4tZnJhbmNpc2NvLWdpYW50cy12cy1zYW4tZGllZ28tcGFkcmVzLTMv" },
-            { t: "Pirates @ Reds", h: "19:10", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDUv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9waXR0c2J1cmdoLXBpcmF0ZXMtdnMtY2luY2lubmF0aS1yZWRzLTIv" },
+            { t: "Athletics @ Braves", h: "12:15", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDgv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9hdGhsZXRpY3MtdnMtYXRsYW50YS1icmF2ZXMtMi8=" },
+            { t: "Rangers @ Orioles", h: "12:35", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDAv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi90ZXhhcy1yYW5nZXJzLXZzLWJhbHRpbW9yZS1vcmlvbGVzLTIv" },
+            { t: "Pirates @ Reds", h: "12:40", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDUv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9waXR0c2J1cmdoLXBpcmF0ZXMtdnMtY2luY2lubmF0aS1yZWRzLTIv" },
+            { t: "Nationals @ Phillies", h: "13:05", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3Mjk5OTkv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi93YXNoaW5ndG9uLW5hdGlvbmFscy12cy1waGlsYWRlbHBoaWEtcGhpbGxpZXMtMy8=" },
+            { t: "Rockies @ Blue Jays", h: "13:07", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzA2NDEv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9jb2xvcmFkby1yb2NraWVzLXZzLXRvcm9udG8tYmx1ZS1qYXlzLTIv" },
+            { t: "White Sox @ Marlins", h: "13:10", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDIv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9jaGljYWdvLXdoaXRlLXNveC12cy1taWFtaS1tYXJsaW5zLTIv" },
+            { t: "Mets @ Cardinals", h: "13:15", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMTEv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9uZXcteW9yay1tZXRzLXZzLXN0LWxvdWlzLWNhcmRpbmFscy01Lz" },
+            { t: "Rays @ Brewers", h: "13:40", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDMv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi90YW1wYS1iYXktcmF5cy12cy1taWx3YXVrZWUtYnJld2Vycy0yLz" },
+            { t: "Red Sox @ Astros", h: "14:10", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzExMzYv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9ib3N0b24tcmVkLXNveC12cy1ob3VzdG9uLWFzdHJvcy0yLz" },
+            { t: "Angels @ Cubs", h: "14:20", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMTAv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9sb3MtYW5nZWxlcy1hbmdlbHMtdnMtY2hpY2Fnby1jdWJzLTMv" },
+            { t: "Tigers @ D-Backs", h: "15:40", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDEv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9kZXRyb2l0LXRpZ2Vycy12cy1hcml6b25hLWRpYW1vbmRiYWNrcy0yLz" },
+            { t: "Giants @ Padres", h: "16:10", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDYv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9zYW4tZnJhbmNpc2NvLWdpYW50cy12cy1zYW4tZGllZ28tcGFkcmVzLTMv" },
+            { t: "Yankees @ Mariners", h: "16:10", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDkv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9uZXcteW9yay15YW5rZWVzLXZzLXNlYXR0bGUtbWFyaW5lcnMtMi8=" },
             { t: "Twins @ Royals", h: "19:40", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDQv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9taW5uZXNvdGEtdHdpbnMtdnMta2Fuc2FzLWNpdHktcm95YWxzLTEv" },
-            { t: "White Sox @ Marlins", h: "19:10", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDIv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9jaGljYWdvLXdoaXRlLXNveC12cy1taWFtaS1tYXJsaW5zLTIv" },
-            { t: "Red Sox @ Astros", h: "20:10", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzExMzYv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9ib3N0b24tcmVkLXNveC12cy1ob3VzdG9uLWFzdHJvcy0yLz" },
-            { t: "Yankees @ Mariners", h: "21:40", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDkv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9uZXcteW9yay15YW5rZWVzLXZzLXNlYXR0bGUtbWFyaW5lcnMtMi8=" },
-            { t: "Guardians @ Dodgers", h: "22:10", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzAwMDcv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9jbGV2ZWxhbmQtZ3VhcmRpYW5zLXZzLWxvcy1hbmdlbGVzLWRvZGdlcnMtMy8=" }
+            { t: "Guardians @ Dodgers", h: "20:20", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzExMzYv", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9jbGV2ZWxhbmQtZ3VhcmRpYW5zLXZzLWxvcy1hbmdlbGVzLWRvZGdlcnMtMy8=" }
         ],
         nba: [
-            { t: "76ers @ Wizards", h: "LIVE", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMDk4MC8=", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9waGlsYWRlbHBoaWEtNzZlcnMtdnMtd2FzaGluZ3Rvbi13aXphcmRzLTEv" },
-            { t: "Knicks @ Grizzlies", h: "LIVE", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMTA0MS8=", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9uZXcteW9yay1rbmlja3MtdnMtbWVtcGhpcy1ncml6emxpZXMv" },
-            { t: "Bucks @ Rockets", h: "LIVE", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMDM5NS8=", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9taWx3YXVrZWUtYnVja3MtdnMtaG91c3Rvbi1yb2NrZXRzLz" },
-            { t: "Hawks @ Magic", h: "LIVE", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMTAyMy8=", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9hdGxhbnRhLWhhd2tzLXZzLW9ybGFuZG8tbWFnaWMtMS8=" },
-            { t: "Kings @ Raptors", h: "LIVE", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMTA1OS8=", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9zYWNyYW1lbnRvLWtpbmdzLXZzLXRvcm9udG8tcmFwdG9ycy8=" },
-            { t: "Nuggets @ Jazz", h: "LIVE", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMTA4MS8=", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9kZW52ZXItbnVnZ2V0cy12cy11dGFoLWphenotMS8=" },
-            { t: "Celtics @ Heat", h: "LIVE", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMTA4Mi8=", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9ib3N0b24tY2VsdGljcy12cy1taWFtaS1oZWF0LTEv" },
-            { t: "Pacers @ Bulls", h: "LIVE", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMDk0My8=", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9pbmRpYW5hLXBhY2Vycy12cy1jaGljYWdvLWJ1bGxzLTEv" },
-            { t: "Spurs @ Warriors", h: "LIVE", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMDUwNC8=", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9zYW4tYW50b25pby1zYnVycy12cy1nb2xkZW4tc3RhdGUtd2FycmlvcnMtMS8=" }
+            { t: "76ers @ Wizards", h: "19:00", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMDk4MC8=", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9waGlsYWRlbHBoaWEtNzZlcnMtdnMtd2FzaGluZ3Rvbi13aXphcmRzLTEv" },
+            { t: "Bucks @ Rockets", h: "20:00", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMDM5NS8=", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9taWx3YXVrZWUtYnVja3MtdnMtaG91c3Rvbi1yb2NrZXRzLz" }
         ],
         nhl: [
-            { t: "Canucks @ Avalanche", h: "LIVE", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzI1MDQ3Lw==", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25obC92YW5jb3V2ZXItY2FudWNrcy12cy1jb2xvcmFkby1hdmFsYW5jaGUtMS8=" },
-            { t: "Blues @ Kings", h: "LIVE", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzI1MDQ4Lw==", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25obC9zdC1sb3Vpcy1ibHVlcy12cy1sb3MtYW5nZWxlcy1raW5ncy8=" },
-            { t: "Ducks @ Sharks", h: "LIVE", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzI1MDQ2Lw==", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25obC9hbmFoZWltLWR1Y2tzLXZzLXNhbi1qb3NlLXNoYXJrcy8=" }
+            { t: "Canucks @ Avalanche", h: "22:00", u1: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzI1MDQ3Lw==", u2: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25obC92YW5jb3V2ZXItY2FudWNrcy12cy1jb2xvcmFkby1hdmFsYW5jaGUtMS8=" }
         ]
     };
 
@@ -126,11 +105,13 @@ const Vault = (() => {
             const container = document.getElementById(`g-${l}`);
             container.innerHTML = _D[l].map(g => `
                 <div class="game-card b-${l}">
-                    <b>${g.t}</b><br>
-                    <small style="color:var(--${l}); font-weight:bold;">🕒 ${g.h} VZA</small>
+                    <div>
+                        <span class="game-title">${g.t}</span>
+                        <span class="game-time">🕒 ${g.h} VZA (Caracas)</span>
+                    </div>
                     <div class="btn-group">
-                        <a href="javascript:void(0)" onclick="Vault.go('${g.u1}')" class="btn-opt btn-primary">OPCIÓN 1</a>
-                        <a href="javascript:void(0)" onclick="Vault.go('${g.u2}')" class="btn-opt btn-backup">OPCIÓN 2</a>
+                        <a href="javascript:void(0)" onclick="Vault.go('${g.u1}')" class="btn-opt" style="background:#2d3748">OPCIÓN 1</a>
+                        <a href="javascript:void(0)" onclick="Vault.go('${g.u2}')" class="btn-opt" style="background:rgba(255,255,255,0.05)">OPCIÓN 2</a>
                     </div>
                 </div>
             `).join('');
@@ -149,11 +130,10 @@ const Vault = (() => {
             if (btoa(document.getElementById('k').value) === _H) {
                 sessionStorage.setItem(_S, "1");
                 location.reload();
-            } else { alert("Clave incorrecta"); }
+            } else { alert("Error"); }
         },
         go: (u) => { window.open(atob(u), '_blank'); },
         tab: (l) => {
-            document.getElementById('s').value = "";
             ['mlb','nba','nhl'].forEach(x => {
                 document.getElementById(`t-${x}`).className = 'tab-btn';
                 document.getElementById(`g-${x}`).classList.remove('is-active');
@@ -164,7 +144,9 @@ const Vault = (() => {
         filter: () => {
             const q = document.getElementById('s').value.toLowerCase();
             const cards = document.querySelector('.grid.is-active').querySelectorAll('.game-card');
-            cards.forEach(c => c.style.display = c.innerText.toLowerCase().includes(q) ? 'block' : 'none');
+            cards.forEach(c => {
+                c.style.display = c.innerText.toLowerCase().includes(q) ? 'flex' : 'none';
+            });
         }
     };
 })();
