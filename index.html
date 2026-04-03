@@ -3,175 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP SPORTS PRO v9.1</title>
+    <title>VIP SPORTS PREMIUM v12.1</title>
     <style>
-        :root { --mlb: #f2a900; --nba: #ff4d4d; --nhl: #00bcff; --race: #10b981; --bg: #030712; --card: #111827; --border: #1f2937; }
-        body { margin: 0; background: var(--bg); color: #fff; font-family: system-ui, -apple-system, sans-serif; -webkit-tap-highlight-color: transparent; padding-bottom: 80px; }
+        :root { --primary: #00ff41; --bg: #0b0e11; --card: #151921; --mlb: #ffae00; --nba: #ff4747; --nhl: #00a2ff; --hip: #a855f7; }
+        body { margin: 0; background: var(--bg); color: #e0e6ed; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding-bottom: 90px; }
         
-        #lock-screen { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 10000; }
-        .lock-box { background: var(--card); padding: 35px; border-radius: 20px; border: 1px solid var(--border); width: 300px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.7); }
-        input { width: 100%; padding: 14px; margin: 20px 0; border-radius: 10px; border: 1px solid #374151; background: #000; color: #fff; box-sizing: border-box; text-align: center; font-size: 1.2rem; outline: none; }
+        #lock-screen { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 10000; background-image: radial-gradient(circle at center, #1a202c 0%, #0b0e11 100%); }
+        .login-card { background: var(--card); padding: 40px; border-radius: 20px; border: 1px solid #2d3748; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 280px; }
+        .login-card h2 { color: var(--primary); margin-top: 0; letter-spacing: 2px; }
+        input[type="password"] { width: 100%; padding: 15px; margin: 20px 0; border-radius: 10px; border: 1px solid #2d3748; background: #000; color: var(--primary); text-align: center; font-size: 1.2rem; outline: none; }
         
         .main-app { display: none; }
-        .header { text-align: center; padding: 25px 20px; background: linear-gradient(to bottom, #0f172a, #030712); border-bottom: 1px solid var(--border); }
-        .search-bar { width: 90%; max-width: 450px; padding: 12px 25px; border-radius: 25px; border: 1px solid var(--border); background: #000; color: #fff; margin-top: 15px; outline: none; }
-        
-        .tabs { display: flex; justify-content: center; gap: 5px; padding: 12px; position: sticky; top: 0; background: rgba(3, 7, 18, 0.95); backdrop-filter: blur(15px); z-index: 100; border-bottom: 1px solid var(--border); overflow-x: auto; }
-        .tab-btn { flex: 1; min-width: 80px; padding: 12px 5px; border: none; border-radius: 10px; background: var(--border); color: #9ca3af; font-weight: bold; font-size: 0.7rem; cursor: pointer; text-transform: uppercase; }
-        
-        .act-mlb { background: var(--mlb) !important; color: #000 !important; }
-        .act-nba { background: var(--nba) !important; color: #fff !important; }
-        .act-nhl { background: var(--nhl) !important; color: #fff !important; }
-        .act-hip { background: var(--race) !important; color: #fff !important; }
+        .top-stats { background: #000; padding: 8px; text-align: center; font-size: 0.75rem; border-bottom: 1px solid var(--primary); color: #718096; position: sticky; top: 0; z-index: 1000; }
+        #v-num { color: var(--primary); font-weight: bold; }
 
-        .grid { display: none; padding: 20px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
-        .is-active { display: grid !important; }
+        header { padding: 20px; background: var(--card); border-bottom: 1px solid #2d3748; }
+        .logo { font-size: 1.5rem; font-weight: 800; text-align: center; color: #fff; }
+        .logo span { color: var(--primary); }
 
-        .game-card { background: var(--card); border-radius: 15px; padding: 20px; border: 1px solid var(--border); border-left: 6px solid transparent; transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
-        .b-mlb { border-left-color: var(--mlb); }
-        .b-nba { border-left-color: var(--nba); }
-        .b-nhl { border-left-color: var(--nhl); }
-        .b-hip { border-left-color: var(--race); }
+        .nav-tabs { display: flex; overflow-x: auto; padding: 15px; gap: 10px; background: var(--bg); position: sticky; top: 35px; z-index: 999; scrollbar-width: none; }
+        .nav-tabs::-webkit-scrollbar { display: none; }
+        .tab { flex: 0 0 auto; padding: 12px 25px; border-radius: 12px; background: var(--card); border: 1px solid #2d3748; font-weight: 700; font-size: 0.8rem; cursor: pointer; color: #a0aec0; transition: 0.3s; }
+        .tab.active { background: var(--primary); color: #000; border-color: var(--primary); transform: translateY(-2px); }
 
-        .game-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 5px; display: block; }
-        .game-time { font-size: 0.85rem; color: #9ca3af; margin-bottom: 15px; display: block; }
+        .content { padding: 15px; display: none; grid-template-columns: 1fr; gap: 15px; }
+        .content.active { display: grid; }
+        .game-card { background: var(--card); border-radius: 16px; border: 1px solid #2d3748; padding: 20px; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .game-info { margin-bottom: 15px; border-left: 4px solid var(--color); padding-left: 15px; }
+        .game-time { font-size: 0.75rem; color: #718096; display: block; margin-bottom: 4px; }
+        .game-teams { font-size: 1.1rem; font-weight: 700; color: #fff; }
 
-        .btn-group { display: flex; gap: 10px; }
-        .btn-opt { flex: 1; padding: 12px; border-radius: 8px; text-decoration: none; text-align: center; font-size: 0.75rem; font-weight: 800; color: #fff; background: #1f2937; border: 1px solid rgba(255,255,255,0.05); }
-
-        .counter-v { position: fixed; bottom: 0; width: 100%; background: #000; text-align: center; padding: 15px; border-top: 1px solid var(--border); color: #9ca3af; font-size: 0.8rem; z-index: 200; }
-        #v-num { color: var(--mlb); font-weight: bold; font-size: 1.1rem; margin-left: 5px; }
+        .links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .btn-link { padding: 12px; border-radius: 10px; text-decoration: none; text-align: center; font-size: 0.75rem; font-weight: 800; color: #fff; background: #2d3748; transition: 0.2s; border: 1px solid rgba(255,255,255,0.05); }
+        .btn-link:active { transform: scale(0.95); background: var(--color); color: #000; }
     </style>
 </head>
 <body>
 
 <div id="lock-screen">
-    <div class="lock-box">
-        <h2 style="color:var(--mlb); margin:0; letter-spacing: 2px;">VIP SPORTS</h2>
-        <input type="password" id="k" placeholder="••••••••" autocomplete="off">
-        <button style="width: 100%; padding: 14px; background: var(--mlb); border: none; border-radius: 10px; font-weight: bold; cursor: pointer;" onclick="Vault.open()">DESBLOQUEAR</button>
+    <div class="login-card">
+        <h2>VIP<span>ACCESS</span></h2>
+        <input type="password" id="pass" placeholder="••••">
+        <button style="width:100%; padding:15px; border-radius:10px; border:none; background:var(--primary); font-weight:bold; cursor:pointer;" onclick="App.login()">INGRESAR</button>
     </div>
 </div>
 
 <div id="app-ui" class="main-app">
-    <header class="header">
-        <h1 style="margin:0; font-size:1.6rem;">SPORTS HUB <span style="color:var(--mlb)">PRO</span></h1>
-        <input type="text" id="s" class="search-bar" placeholder="🔍 Buscar equipos o canales..." onkeyup="Vault.filter()">
+    <div class="top-stats">SISTEMA MONITORIZADO • VISITAS TOTALES: <span id="v-num">0</span></div>
+    
+    <header>
+        <div class="logo">VIP <span>SPORTS</span> HUB</div>
     </header>
 
-    <nav class="tabs">
-        <button id="t-mlb" class="tab-btn act-mlb" onclick="Vault.tab('mlb')">MLB</button>
-        <button id="t-nba" class="tab-btn" onclick="Vault.tab('nba')">NBA</button>
-        <button id="t-nhl" class="tab-btn" onclick="Vault.tab('nhl')">NHL</button>
-        <button id="t-hip" class="tab-btn" onclick="Vault.tab('hip')">HIPISMO</button>
-    </nav>
+    <div class="nav-tabs">
+        <div class="tab active" onclick="App.switch('mlb', this)" data-color="#ffae00">⚾ MLB</div>
+        <div class="tab" onclick="App.switch('nba', this)" data-color="#ff4747">🏀 NBA</div>
+        <div class="tab" onclick="App.switch('nhl', this)" data-color="#00a2ff">🏒 NHL</div>
+        <div class="tab" onclick="App.switch('hip', this)" data-color="#a855f7">🏇 HIPISMO</div>
+    </div>
 
     <main>
-        <div id="g-mlb" class="grid is-active"></div>
-        <div id="g-nba" class="grid"></div>
-        <div id="g-nhl" class="grid"></div>
-        <div id="g-hip" class="grid"></div>
+        <div id="mlb" class="content active" style="--color: var(--mlb)"></div>
+        <div id="nba" class="content" style="--color: var(--nba)"></div>
+        <div id="nhl" class="content" style="--color: var(--nhl)"></div>
+        <div id="hip" class="content" style="--color: var(--hip)"></div>
     </main>
-
-    <footer class="counter-v">
-        📈 VISITAS AL SISTEMA: <span id="v-num">0</span>
-    </footer>
 </div>
 
 <script>
-const Vault = (() => {
-    const _H = "UHJvbW8="; 
-    const _S = "c2VzX3ZpcF85XzE="; 
+const App = (() => {
+    const _KEY = "UHJvbW8=";
+    const _SES = "vip_session_v12_1";
 
-    const _D = {
+    const _DATA = {
         mlb: [
-            { t: "Twins @ Royals", h: "13:10", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9taW5uZXNvdGEtdHdpbnMtdnMta2Fuc2FzLWNpdHktcm95YWxzLTIv", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzMxNjQv" },
-            { t: "Braves @ D-Backs", h: "15:40", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9hdGxhbnRhLWJyYXZlcy12cy1hcml6b25hLWRpYW1vbmRiYWNrcy8=", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzM0NzYv" },
-            { t: "Mets @ Giants", h: "15:45", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9uZXcteW9yay1tZXRzLXZzLXNhbi1mcmFuY2lzY28tZ2lhbnRzLz", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzMxNjMv" }
+            { t: "Dodgers @ Nationals", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9sb3MtYW5nZWxlcy1kb2RnZXJzLXZzLXdhc2hpbmd0b24tbmF0aW9uYWxzLw==", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3Mzc4ODMv" },
+            { t: "Padres @ Red Sox", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9zYW4tZGllZ28tcGFkcmVzLXZzLWJvc3Rvbi1yZWQtc294Lw==", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzYwNjkv" },
+            { t: "Cubs @ Guardians", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9jaGljYWdvLWN1YnMtdnMtY2xldmVsYW5kLWd1YXJkaWFucy0xLw==", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzYwNjcv" },
+            { t: "Orioles @ Pirates", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9iYWx0aW1vcmUtb3Jpb2xlcy12cy1waXR0c2J1cmdoLXBpcmF0ZXMtMi8=", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzYwNjYv" },
+            { t: "Braves @ D-Backs", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9hdGxhbnRhLWJyYXZlcy12cy1hcml6b25hLWRpYW1vbmRiYWNrcy0xLw==", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzYwNzIv" },
+            { t: "Cardinals @ Tigers", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9zdC1sb3Vpcy1jYXJkaW5hbHMtdnMtZGV0cm9pdC10aWdlcnMv", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzYzNDgv" },
+            { t: "Blue Jays @ White Sox", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi90b3JvbnRvLWJsdWUtamF5cy12cy1jaGljYWdvLXdoaXRlLXNveC0xLw==", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzYwNzEv" },
+            { t: "Rays @ Twins", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi90YW1wYS1iYXktcmF5cy12cy1taW5uZXNvdGEtdHdpbnMtMi8=", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzYxMzEv" },
+            { t: "Brewers @ Royals", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9taWx3YXVrZWUtYnJld2Vycy12cy1rYW5zYXMtY2l0eS1yb3lhbHMtMS8=", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzYxMjYv" },
+            { t: "Astros @ Athletics", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9ob3VzdG9uLWFzdHJvcy12cy1hdGhsZXRpY3Mv", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzYxMjgv" },
+            { t: "Marlins @ Yankees", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9taWFtaS1tYXJsaW5zLXZzLW5ldy15b3JrLXlhbmtlZXMv", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzYxMjkv" },
+            { t: "Reds @ Rangers", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9jaW5jaW5uYXRpLXJlZHMtdnMtdGV4YXMtcmFuZ2Vycy8=", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzYxMjcv" },
+            { t: "Phillies @ Rockies", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9waGlsYWRlbHBoaWEtcGhpbGxpZXMtdnMtY29sb3JhZG8tcm9ja2llcy8=", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzYxMzAv" },
+            { t: "Mariners @ Angels", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9zZWF0dGxlLW1hcmluZXJzLXZzLWxvcy1hbmdlbGVzLWFuZ2Vscy0xLw==", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzYxMzIv" },
+            { t: "Mets @ Giants", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9uZXcteW9yay1tZXRzLXZzLXNhbi1mcmFuY2lzY28tZ2lhbnRzLTEv", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzYxMzMv" }
         ],
         nba: [
-            { t: "Timberwolves @ Pistons", h: "19:00", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9taW5uZXNvdGEtdGltYmVyd29sdmVzLXZzLWRldHJvaXQtcGlzdG9ucy8=", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczNDA4NC8=" },
-            { t: "Suns @ Hornets", h: "19:00", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9waG9lbml4LXN1bnMtdnMtY2hhcmxvdHRlLWhvcm5ldHMv", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczNDExNS8=" },
-            { t: "Cavaliers @ Warriors", h: "20:00", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9jbGV2ZWxhbmQtY2F2YWxpZXJzLXZzLWdvbGRlbi1zdGF0ZS13YXJyaW9ycy8=", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMzkzNS8=" },
-            { t: "Lakers @ Thunder", h: "20:00", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9sb3MtYW5nZWxlcy1sYWtlcnMtdnMtb2tsYWhvbWEtY2l0eS10aHVuZGVyLTEv", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMzU0Ni8=" },
-            { t: "Pelicans @ Trail Blazers", h: "22:00", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9uZXctb3JsZWFucy1wZWxpY2Fucy12cy1wb3J0bGFuZC10cmFpbC1ibGF6ZXJzLz", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMzU3MC8=" },
-            { t: "Spurs @ Clippers", h: "22:30", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9zYW4tYW50b25pby1zcHVycy12cy1sYS1jbGlwcGVycy0xLz", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczMzU0Ny8=" }
+            { t: "Pacers @ Hornets", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9pbmRpYW5hLXBhY2Vycy12cy1jaGFybG90dGUtaG9cm5ldHMtMS8=", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczNzEzNy8=" },
+            { t: "Bulls @ Knicks", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9jaGljYWdvLWJ1bGxzLXZzLW5ldy15b3JrLWtuaWNrcy0xLw==", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczNzM1Mi8=" },
+            { t: "Celtics @ Bucks", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9ib3N0b24tY2VsdGljcy12cy1taWx3YXVrZWUtYnVja3MtMi8=", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczNTU1Mi8=" },
+            { t: "Wolves @ 76ers", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9taW5uZXNvdGEtdGltYmVyd29sdmVzLXZzLXBoaWxhZGVscGhpYS03NmVycy0xLw==", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczNzEzNi8=" },
+            { t: "Jazz @ Rockets", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS91dGFoLWphenotdnMtaG91c3Rvbi1yb2NrZXRzLTEv", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczNTY1NC8=" },
+            { t: "Magic @ Mavericks", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9vcmxhbmRvLW1hZ2ljLXZzLWRhbGxhcy1tYXZlcmlja3Mv", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczNTc2MS8=" },
+            { t: "Hawks @ Nets", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9hdGxhbnRhLWhhdmtzLXZzLWJyb29rbHluLW5ldHMtMS8=", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczNzE3Ny8=" },
+            { t: "Raptors @ Grizzlies", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS90b3JvbnRvLXJhcHRvcnMtdnMtbWVtcGhpcy1ncml6emxpZXMv", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczNzMwOS8=" },
+            { t: "Pelicans @ Kings", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9uZXctb3JsZWFucy1wZWxpY2Fucy12cy1zYWNyYW1lbnRvLWtpbmdzLTEv", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczNzYwMC8=" }
         ],
         nhl: [
-            { t: "Sabres @ Senators", h: "19:00", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25obC9idWZmYWxvLXNhYnJlcy12cy1vdHRhd2Etc2VuYXRvcnMtMS8=", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzI4NDcxLw==" },
-            { t: "Canadiens @ Rangers", h: "19:00", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25obC9tb250cmVhbC1jYW5hZGllbnMtdnMtbmV3LXlvcmstcmFuZ2Vycy0xLz", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzI4NDcyLw==" },
-            { t: "Capitals @ Devils", h: "19:00", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25obC93YXNoaW5ndG9uLWNhcGl0YWxzLXZzLW5ldy1qZXJzZXktZGV2aWxzLTEv", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzI4NDczLw==" },
-            { t: "Blackhawks @ Oilers", h: "20:00", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25obC9jaGljYWdvLWJsYWNraGF3cy12cy1lZG1vbnRvbi1vaWxlcnMtMS8=", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzI4NDc0Lw==" }
+            { t: "Flyers @ Islanders", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25obC9waGlsYWRlbHBoaWEtZmx5ZXJzLXZzLW5ldy15b3JrLWlzbGFuZGVycy0xLw==", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzMxOTI4Lw==" },
+            { t: "Blues @ Ducks", h: "Hoy", l1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25obC9zdC1sb3Vpcy1ibHVlcy12cy1hbmFoZWltLWR1Y2tzLTEv", l2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvaG9ja2V5L25obC83NzMxOTI3Lw==" }
         ],
         hip: [
-            { t: "AMERICANAS TV", h: "Canal Principal", u1: "aHR0cHM6Ly9lbGxlY2h1by5jb20v", u2: "aHR0cHM6Ly9tLnR3aXRjaC50di9hbWVyaWNhbmFzZW52aXZv" },
-            { t: "HIPISMO IMBATIBLE", h: "En Vivo", u1: "aHR0cHM6Ly9pbWJhdGlibGV0di5jb20=", u2: "aHR0cHM6Ly9pbWJhdGlibGV0di5jb20=" },
-            { t: "HIPICA LIVE", h: "Transmisión HD", u1: "aHR0cHM6Ly9oaXBpY2FsaXZlLmRkbnMubmV0", u2: "aHR0cHM6Ly9oaXBpY2FsaXZlLmRkbnMubmV0" },
-            { t: "EN LA RECTA FINAL", h: "Cobertura Total", u1: "aHR0cHM6Ly9lbmxhcmVjdGFmaW5hbC5uZXQv", u2: "aHR0cHM6Ly9lbmxhcmVjdGFmaW5hbC5uZXQv" },
-            { t: "STREAM RACE TV", h: "Live Racing", u1: "aHR0cHM6Ly9zdHJlYW1yYWNldHYuY29tL3RyYW5zbWlzaW9u", u2: "aHR0cHM6Ly9zdHJlYW1yYWNldHYuY29tL3RyYW5zbWlzaW9u" },
-            { t: "NETWORKS HORSE TV", h: "Horse Racing TV", u1: "aHR0cHM6Ly9uaC10di5uZXQvdHJhbnNtaXNpb24tZW4tdml2by8=", u2: "aHR0cHM6Ly9uaC10di5uZXQvdHJhbnNtaXNpb24tZW4tdml2by8=" }
+            { t: "AMERICANAS TV", h: "En Vivo", l1: "aHR0cHM6Ly9lbGxlY2h1by5jb20v", l2: "aHR0cHM6Ly9tLnR3aXRjaC50di9hbWVyaWNhbmFzZW52aXZv" },
+            { t: "HIPISMO IMBATIBLE", h: "Transmisión", l1: "aHR0cHM6Ly9pbWJhdGlibGV0di5jb20=", l2: "aHR0cHM6Ly9pbWJhdGlibGV0di5jb20=" }
         ]
     };
 
     const _render = () => {
-        Object.keys(_D).forEach(l => {
-            const container = document.getElementById(`g-${l}`);
-            container.innerHTML = _D[l].map(g => `
-                <div class="game-card b-${l}">
-                    <div>
-                        <span class="game-title">${g.t}</span>
-                        <span class="game-time">🕒 ${g.h}</span>
+        Object.keys(_DATA).forEach(key => {
+            const el = document.getElementById(key);
+            el.innerHTML = _DATA[key].map(g => `
+                <div class="game-card">
+                    <div class="game-info">
+                        <span class="game-time">🕒 ${g.h} 03/04</span>
+                        <div class="game-teams">${g.t}</div>
                     </div>
-                    <div class="btn-group">
-                        <a href="javascript:void(0)" onclick="Vault.go('${g.u1}')" class="btn-opt" style="background:#2d3748">OPCIÓN 1</a>
-                        <a href="javascript:void(0)" onclick="Vault.go('${g.u2}')" class="btn-opt" style="background:rgba(255,255,255,0.05)">OPCIÓN 2</a>
+                    <div class="links">
+                        <a href="javascript:void(0)" onclick="App.openLink('${g.l1}')" class="btn-link">STREAMEAST</a>
+                        <a href="javascript:void(0)" onclick="App.openLink('${g.l2}')" class="btn-link">SPORTPLUS</a>
                     </div>
                 </div>
             `).join('');
         });
     };
 
-    const _counter = () => {
-        let v = localStorage.getItem('visit_count') || 0;
-        v++;
-        localStorage.setItem('visit_count', v);
-        document.getElementById('v-num').innerText = v;
-    };
-
     return {
         init: () => {
             _render();
-            if (sessionStorage.getItem(_S)) {
+            if (sessionStorage.getItem(_SES)) {
                 document.getElementById('lock-screen').style.display = 'none';
                 document.getElementById('app-ui').style.display = 'block';
-                _counter();
+                let v = localStorage.getItem('v_total_v12_1') || 0;
+                v++; localStorage.setItem('v_total_v12_1', v);
+                document.getElementById('v-num').innerText = v.toString().padStart(5, '0');
             }
         },
-        open: () => {
-            if (btoa(document.getElementById('k').value) === _H) {
-                sessionStorage.setItem(_S, "1");
+        login: () => {
+            if (btoa(document.getElementById('pass').value) === _KEY) {
+                sessionStorage.setItem(_SES, "active");
                 location.reload();
-            } else { alert("Error de acceso"); }
+            } else { alert("Acceso Incorrecto"); }
         },
-        go: (u) => { window.open(atob(u), '_blank'); },
-        tab: (l) => {
-            ['mlb','nba','nhl','hip'].forEach(x => {
-                document.getElementById(`t-${x}`).className = 'tab-btn';
-                document.getElementById(`g-${x}`).classList.remove('is-active');
-            });
-            document.getElementById(`t-${l}`).classList.add(`act-${l}`);
-            document.getElementById(`g-${l}`).classList.add('is-active');
-        },
-        filter: () => {
-            const q = document.getElementById('s').value.toLowerCase();
-            const cards = document.querySelector('.grid.is-active').querySelectorAll('.game-card');
-            cards.forEach(c => {
-                c.style.display = c.innerText.toLowerCase().includes(q) ? 'flex' : 'none';
-            });
+        openLink: (u) => { window.open(atob(u), '_blank'); },
+        switch: (id, tab) => {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(id).classList.add('active');
         }
     };
 })();
-document.addEventListener('DOMContentLoaded', Vault.init);
+document.addEventListener('DOMContentLoaded', App.init);
 </script>
 </body>
 </html>
