@@ -8,12 +8,7 @@
         :root { --mlb: #002d72; --nba: #17408b; --nhl: #000000; --hip: #15803d; --bg: #f3f4f6; }
         body { margin: 0; background: var(--bg); color: #1f2937; font-family: -apple-system, sans-serif; padding-bottom: 20px; }
         
-        /* Bloqueo Sencillo */
-        #lock-screen { position: fixed; inset: 0; background: #fff; display: flex; align-items: center; justify-content: center; z-index: 10000; }
-        .lock-box { text-align: center; width: 80%; max-width: 300px; }
-        input { width: 100%; padding: 15px; border: 2px solid #e5e7eb; border-radius: 12px; margin: 15px 0; text-align: center; font-size: 1.2rem; outline: none; }
-        
-        .main-app { display: none; }
+        /* Bloqueo Sencillo - ELIMINADO */
 
         /* Header Estilo ESPN */
         header { background: #cc0000; color: white; padding: 15px; text-align: center; font-weight: 900; font-size: 1.2rem; letter-spacing: 1px; }
@@ -48,13 +43,7 @@
 </head>
 <body>
 
-<div id="lock-screen">
-    <div class="lock-box">
-        <div style="font-weight: 900; font-size: 1.5rem; color: #cc0000;">VIP LOGIN</div>
-        <input type="password" id="pass" placeholder="PIN de Acceso">
-        <button onclick="App.login()" style="width:100%; padding:15px; border-radius:12px; border:none; background:#cc0000; color:white; font-weight:bold;">ENTRAR</button>
-    </div>
-</div>
+<!-- EL DIV DEL LOGIN HA SIDO ELIMINADO -->
 
 <div id="app-ui" class="main-app">
     <header>VIP SPORTS HUB</header>
@@ -77,8 +66,7 @@
 
 <script>
 const App = (() => {
-    const _K = "UHJvbW8=";
-    const _S = "vip_live_v13";
+    // Se eliminaron las variables de contraseña (_K) y sesión (_S)
 
     const _D = {
         mlb: [
@@ -99,7 +87,7 @@ const App = (() => {
             { t: "NY Mets @ SF Giants", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL21sYi9uZXcteW9yay1tZXRzLXZzLXNhbi1mcmFuY2lzY28tZ2lhbnRzLTEv", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFzZWJhbGwvMTY2Nzc1Lzc3MzYxMzMv" }
         ],
         nba: [
-            { t: "Pacers @ Hornets", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9pbmRpYW5hLXBhY2Vycy12cy1jaGFybG90dGUtaG9cm5ldHMtMS8=", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczNzEzNy8=" },
+            { t: "Pacers @ Hornets", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9pbmRpYW5hLXBhY2Vycy12cy1jaGFybG90dGUtaG9ybmV0cy0xLw==", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczNzEzNy8=" },
             { t: "Bulls @ Knicks", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9jaGljYWdvLWJ1bGxzLXZzLW5ldy15b3JrLWtuaWNrcy0xLw==", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczNzM1Mi8=" },
             { t: "Celtics @ Bucks", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9ib3N0b24tY2VsdGljcy12cy1taWx3YXVrZWUtYnVja3MtMi8=", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczNTU1Mi8=" },
             { t: "Wolves @ 76ers", u1: "aHR0cHM6Ly92Mi5zdHJlYW1lYXN0LnNrL25iYS9taW5uZXNvdGEtdGltYmVyd29sdmVzLXZzLXBoaWxhZGVscGhpYS03NmVycy0xLw==", u2: "aHR0cHM6Ly9lczYuc3BvcnRwbHVzLmxpdmUvYmFza2V0YmFsbC9uYmEvNzczNzEzNi8=" },
@@ -143,20 +131,13 @@ const App = (() => {
     return {
         init: () => {
             _render();
-            if (sessionStorage.getItem(_S)) {
-                document.getElementById('lock-screen').style.display = 'none';
-                document.getElementById('app-ui').style.display = 'block';
-                let v = localStorage.getItem('v_v13') || 0;
-                v++; localStorage.setItem('v_v13', v);
-                document.getElementById('v-num').innerText = v;
-            }
+            // Ahora solo cuenta las visitas y muestra la app directamente
+            let v = localStorage.getItem('v_v13') || 0;
+            v++; 
+            localStorage.setItem('v_v13', v);
+            document.getElementById('v-num').innerText = v;
         },
-        login: () => {
-            if (btoa(document.getElementById('pass').value) === _K) {
-                sessionStorage.setItem(_S, "1");
-                location.reload();
-            } else { alert("Error"); }
-        },
+        // Se eliminó la función login()
         go: (u) => { window.open(atob(u), '_blank'); },
         tab: (id, el) => {
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
